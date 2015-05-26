@@ -5,6 +5,7 @@ ENV HOME /root
 ENV TERM screen
 
 #Applying stuff
+RUN add-apt-repository ppa:mamarley/quassel && \
 apt-get update -qq && \
 apt-get install quassel-core -yqq && \
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
