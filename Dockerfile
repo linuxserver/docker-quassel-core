@@ -5,7 +5,7 @@ ENV HOME /root
 ENV TERM screen
 
 #Applying stuff
-RUN apt-get update -qq && \
+apt-get update -qq && \
 apt-get install quassel-core -yqq && \
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
