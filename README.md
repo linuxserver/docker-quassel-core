@@ -10,7 +10,7 @@ This container handles the IRC connection (quasselcore) and requires a desktop c
 
 ![](http://bugs.quassel-irc.org/attachments/download/111/distributed.png)
 
-_Source: [quassel](http://bugs.quassel-irc.org/projects/quassel-irc/wiki) _
+Source: [quassel](http://bugs.quassel-irc.org/projects/quassel-irc/wiki)
 
 ## Usage
 
@@ -38,6 +38,6 @@ lonix <lonixx@gmail.com>
 IronicBadger <ironicbadger@linuxserver.io>
 
 **Versions**
-2.1 LinuxServer.io related documentation updates
-2.0 New gid\uid fix, and code cleanup.
-1.0: Inital release
+* 2.1 LinuxServer.io related documentation updates
+* 2.0 New gid\uid fix, and code cleanup.
+* 1.0: Inital release
