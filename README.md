@@ -19,6 +19,7 @@ docker create --name=quassel-core -v /etc/localtime:/etc/localtime:ro -v <path t
 ```
 
 **Parameters**
+
 * `-p` 4242 - the port quassel-core listens for connections on
 * `-v` /etc/localhost for timesync - *optional*
 * `-v` /config - database and quassel-core configuration storage
@@ -42,10 +43,12 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 
 **Credits**
-lonix <lonixx@gmail.com>
-IronicBadger <ironicbadger@linuxserver.io>
+
+* lonix <lonixx@gmail.com>
+* IronicBadger <ironicbadger@linuxserver.io>
 
 **Versions**
+
 * 2.1 LinuxServer.io related documentation updates
 * 2.0 New gid\uid fix, and code cleanup.
 * 1.0: Inital release
