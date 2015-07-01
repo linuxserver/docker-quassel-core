@@ -16,8 +16,8 @@ if [ "$WEBUI" == "1" ]; then
 			#!/bin/bash
 
 			exec /sbin/setuser abc node /config/quassel-webserver/app.js -m http -p 64443
-
-
-			EOT	
+EOT
+fi
 else
 	rm -fr /etc/service/webui 
+fi

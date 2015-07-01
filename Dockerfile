@@ -17,6 +17,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 #Adding Custom files
 ADD init/ /etc/my_init.d/
 ADD services/ /etc/service/
+ADD settings-user.js /default/settings-user.js
 RUN chmod -v +x /etc/service/*/run
 RUN chmod -v +x /etc/my_init.d/*.sh
 
@@ -33,3 +34,7 @@ CMD ["/sbin/my_init"]
 # Volumes and Ports
 VOLUME /config
 EXPOSE 4242
+EXPOSE 64443
+
+#Lonix's private testing command dont remove before production.
+# docker run -p 4242 -p 64443 -e PUID=500 -e PGID=500 -e WEBUI=1 -v /tmp/config:/config web
