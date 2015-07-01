@@ -7,8 +7,8 @@ ENV TERM screen
 #Applying stuff
 RUN add-apt-repository ppa:mamarley/quassel 
 RUN curl -sL https://deb.nodesource.com/setup | bash - 
-RUN apt-get dist-upgrade -y
-RUN apt-get install nodejs -y
+RUN apt-get dist-upgrade -yqq
+RUN apt-get install nodejs -yqq
 RUN npm -g install n && n latest 
 RUN apt-get install quassel-core git build-essential -yqq 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
