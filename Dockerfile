@@ -5,7 +5,7 @@ ENV HOME /root
 ENV TERM screen
 
 #Applying stuff
-#RUN add-apt-repository ppa:mamarley/quassel 
+RUN add-apt-repository ppa:mamarley/quassel 
 RUN curl -sL https://deb.nodesource.com/setup | bash - 
 RUN apt-get dist-upgrade -yqq
 RUN apt-get install nodejs quassel-core libqt4-sql-sqlite git build-essential sqlite -yqq
