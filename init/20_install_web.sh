@@ -2,6 +2,7 @@
 
 if [ "$WEBUI" == "1" ]; then
 	cd /config
+	echo "Webui is enabled"
 	if [ ! -f /config/quassel-webserver/app.js ]; then
 		git clone https://github.com/magne4000/quassel-webserver.git
 		cd quassel-webserver
@@ -14,10 +15,11 @@ if [ "$WEBUI" == "1" ]; then
 	if [ ! -f /etc/service/webui/run ]; then
 		mkdir -p /etc/service/webui
 		cat <<'EOT' > /etc/service/webui/run
-			#!/bin/bash
+#!/bin/bash
 
-			exec /sbin/setuser abc node /config/quassel-webserver/app.js -m http -p 64443
+exec /sbin/setuser abc node /config/quassel-webserver/app.js -m http -p 64443
 EOT
+		chmod 755 /etc/service/webui/run
 fi
 else
 	rm -fr /etc/service/webui 
