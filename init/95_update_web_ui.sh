@@ -2,6 +2,6 @@
 
 
 if [ "$WEBUI" == "1" ]; then
-	cd /config/webui
+	cd /config/quassel-webserver
 	git pull && npm update
 fi

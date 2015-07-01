@@ -12,6 +12,7 @@ if [ "$WEBUI" == "1" ]; then
 		cp -v /default/settings-user.js /config/quassel-webserver/settings-user.js
 	fi
 	if [ ! -f /etc/service/webui/run ]; then
+		mkdir -p /etc/service/webui
 		cat <<'EOT' > /etc/service/webui/run
 			#!/bin/bash
 
