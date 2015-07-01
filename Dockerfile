@@ -5,13 +5,13 @@ ENV HOME /root
 ENV TERM screen
 
 #Applying stuff
-RUN add-apt-repository ppa:mamarley/quassel && \
-curl -sL https://deb.nodesource.com/setup | bash - && \ 
-apt-get install nodejs && \
-apt-get install dist-upgrade -y && \
-npm -g install n && n latest && \
-apt-get install quassel-core git build-essential -yqq && \
-apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN add-apt-repository ppa:mamarley/quassel 
+RUN curl -sL https://deb.nodesource.com/setup | bash - 
+RUN apt-get install nodejs 
+RUN apt-get install dist-upgrade -y 
+RUN npm -g install n && n latest 
+RUN apt-get install quassel-core git build-essential -yqq 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 #Adding Custom files
