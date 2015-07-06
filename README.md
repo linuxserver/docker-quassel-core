@@ -25,6 +25,7 @@ docker create --name=quassel-core -v /etc/localtime:/etc/localtime:ro -v <path t
 * `-v` /config - database and quassel-core configuration storage
 * `-e` PGID for for GroupID
 * `-e` PUID for for UserID
+* `-e` WEBUI Set this to 1 enable the optional web-interface (On port 64443)
 
 It is based on phusion-baseimage with ssh removed, for shell access whilst the container is running do `docker exec -it quassel-core /bin/bash`.
 
@@ -43,12 +44,12 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 
 **Credits**
-
 * lonix <lonixx@gmail.com>
 * IronicBadger <ironicbadger@linuxserver.io>
 
 **Versions**
 
+06.07.15: Enabled BLOWFISH encryption and added a (optional) webinterface, for the times you dont have access to your client.
 * 2.1 LinuxServer.io related documentation updates
 * 2.0 New gid\uid fix, and code cleanup.
 * 1.0: Inital release
