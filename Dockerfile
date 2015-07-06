@@ -5,12 +5,12 @@ ENV HOME /root
 ENV TERM screen
 
 #Applying stuff
-RUN add-apt-repository ppa:mamarley/quassel 
-RUN curl -sL https://deb.nodesource.com/setup | bash - 
-RUN apt-get dist-upgrade -yqq
-RUN apt-get install nodejs quassel-core libqca2-plugin-ossl libqt4-sql-sqlite git build-essential sqlite -yqq
-RUN npm -g install n && n latest 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN add-apt-repository ppa:mamarley/quassel  && \
+curl -sL https://deb.nodesource.com/setup | bash -  && \
+apt-get dist-upgrade -yqq && \
+apt-get install nodejs quassel-core libqca2-plugin-ossl libqt4-sql-sqlite git build-essential sqlite -yqq && \
+npm -g install n && n latest  && \
+apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 #Adding Custom files
@@ -34,6 +34,3 @@ CMD ["/sbin/my_init"]
 VOLUME /config
 EXPOSE 4242
 EXPOSE 64443
-
-#Lonix's private testing command dont remove before production.
-# docker run -p 4242 -p 64443 -e PUID=500 -e PGID=500 -e WEBUI=1 -v /tmp/config:/config web
