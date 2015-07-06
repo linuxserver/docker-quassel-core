@@ -54,12 +54,12 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 * Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
 **Credits**
-
 * lonix <lonixx@gmail.com>
 * IronicBadger <ironicbadger@linuxserver.io>
 
 **Versions**
 
+06.07.15: Enabled BLOWFISH encryption and added a (optional) webinterface, for the times you dont have access to your client.
 * 2.1 LinuxServer.io related documentation updates
 * 2.0 New gid\uid fix, and code cleanup.
 * 1.0: Inital release
