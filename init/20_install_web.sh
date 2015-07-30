@@ -2,7 +2,7 @@
 
 if [ "$WEBUI" == "1" ]; then
 	cd /config
-	echo "Webui is enabled"
+	echo "Webui is Enabled"
 	if [ ! -f /config/quassel-webserver/app.js ]; then
 		git clone https://github.com/magne4000/quassel-webserver.git
 		cd quassel-webserver
