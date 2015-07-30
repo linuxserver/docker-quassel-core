@@ -1,8 +1,6 @@
-FROM phusion/baseimage:0.9.16
+FROM linuxserver/baseimage
 MAINTAINER Stian Larsen <lonixx@gmail.com>
-ENV DEBIAN_FRONTEND noninteractive
-ENV HOME /root
-ENV TERM screen
+
 
 #Applying stuff
 RUN add-apt-repository ppa:mamarley/quassel  && \
