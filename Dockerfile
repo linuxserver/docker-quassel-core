@@ -1,7 +1,6 @@
 FROM linuxserver/baseimage
 MAINTAINER Stian Larsen <lonixx@gmail.com>
 
-
 #Applying stuff
 RUN add-apt-repository ppa:mamarley/quassel  && \
 curl -sL https://deb.nodesource.com/setup | bash -  && \
@@ -10,7 +9,6 @@ apt-get install nodejs quassel-core libqca2-plugin-ossl libqt4-sql-sqlite git bu
 npm -g install n && n latest  && \
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
 #Adding Custom files
 ADD init/ /etc/my_init.d/
 ADD services/ /etc/service/
@@ -18,17 +16,7 @@ ADD settings-user.js /default/settings-user.js
 RUN chmod -v +x /etc/service/*/run
 RUN chmod -v +x /etc/my_init.d/*.sh
 
-
-#Adduser
-RUN useradd -u 911 -U -s /bin/false abc
-RUN usermod -G users abc
-
-
-# Use baseimage-docker's init system
-CMD ["/sbin/my_init"]
-
-
 # Volumes and Ports
 VOLUME /config
-EXPOSE 4242
-EXPOSE 64443
+EXPOSE 4242 64443
+
