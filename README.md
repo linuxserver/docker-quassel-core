@@ -6,7 +6,7 @@ The [LinuxServer.io](http://linuxserver.io) team brings you another quality cont
 
 [Quassel IRC](http://quassel-irc.org/) is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
 
-This container handles the IRC connection (quasselcore) and requires a desktop client (quasselclient) to be used and configured. It is designed to always on and will keep you present in IRC even when your clients cannot be online. 
+This container handles the IRC connection (quasselcore) and requires a desktop client (quasselclient) to be used and configured. It is designed to be always on and will keep your identity present in IRC even when your clients cannot be online. Backlog (history) is downloaded by your client upon reconnection allowing infinite scrollback through time.
 
 ![](http://bugs.quassel-irc.org/attachments/download/111/distributed.png)
 
@@ -21,7 +21,7 @@ docker create \
 	-v <path to data>:/config \
 	-e PGID=<gid> -e PUID=<uid> \
 	-p 4242:4242 \
-	linuxserver/quassel:latest
+	linuxserver/quassel-core
 ```
 
 **Parameters**
@@ -54,10 +54,10 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 * Upgrade to the latest version of Quassel simply `docker restart quassel-core`.
 * Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
-
 ## Versions
 
-* 30.07.15: Switched to internal baseimage, and fixed a bug with updateing the webinterface. 
+* 01.09.15: Fixed mistake in README
+* 30.07.15: Switched to internal baseimage, and fixed a bug with updating the webinterface. 
 * 06.07.15: Enabled BLOWFISH encryption and added a (optional) webinterface, for the times you dont have access to your client.
 * 2.1 LinuxServer.io related documentation updates
 * 2.0 New gid\uid fix, and code cleanup.
