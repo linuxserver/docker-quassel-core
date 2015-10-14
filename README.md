@@ -31,7 +31,6 @@ docker create \
 * `-v /config` - database and quassel-core configuration storage
 * `-e PGID` for for GroupID - see below for explanation
 * `-e PUID` for for UserID - see below for explanation
-* `-e WEBUI` for the optional WEbui set value to **1** to enable it.
 
 It is based on phusion-baseimage with ssh removed, for shell access whilst the container is running do `docker exec -it quassel-core /bin/bash`.
 
@@ -56,9 +55,10 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 ## Versions
 
-* 01.09.15: Fixed mistake in README
-* 30.07.15: Switched to internal baseimage, and fixed a bug with updating the webinterface. 
-* 06.07.15: Enabled BLOWFISH encryption and added a (optional) webinterface, for the times you dont have access to your client.
-* 2.1 LinuxServer.io related documentation updates
-* 2.0 New gid\uid fix, and code cleanup.
-* 1.0: Inital release
++ **14.10.15:** Removed the webui, turned out to be to unstable for most usecases.
++ **01.09.15:** Fixed mistake in README
++ **30.07.15:** Switched to internal baseimage, and fixed a bug with updating the webinterface. 
++ **06.07.15:** Enabled BLOWFISH encryption and added a (optional) webinterface, for the times you dont have access to your client.
++ **2.1:** LinuxServer.io related documentation updates
++ **2.0:** New gid\uid fix, and code cleanup.
++ **1.0:** Inital release
