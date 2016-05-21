@@ -1,6 +1,6 @@
 FROM linuxserver/baseimage
 MAINTAINER Stian Larsen <lonixx@gmail.com>
-ENV APTLIST="quassel-core libqt4-sql-sqlite sqlite"
+ENV APTLIST="quassel-core libqt4-sql-sqlite sqlite libqt4-sql-psql"
 
 
 #Applying stuff
