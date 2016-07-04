@@ -1,6 +1,6 @@
 ![http://linuxserver.io](http://www.linuxserver.io/wp-content/uploads/2015/06/linuxserver_medium.png)
 
-The [LinuxServer.io](http://linuxserver.io) team brings you another quality container release featuring auto-update on startup, easy user mapping and community support. Be sure to checkout our [forums](http://forum.linuxserver.io) or for real-time support our [IRC](http://www.linuxserver.io/index.php/irc/) on freenode at `#linuxserver.io`.
+The [LinuxServer.io](http://linuxserver.io) team brings you another quality container release featuring easy user mapping and community support. Be sure to checkout our [forums](http://forum.linuxserver.io) or for real-time support our [IRC](http://www.linuxserver.io/index.php/irc/) on freenode at `#linuxserver.io`.
 
 # linuxserver/quassel-core
 
@@ -32,7 +32,7 @@ docker create \
 * `-e PGID` for for GroupID - see below for explanation
 * `-e PUID` for for UserID - see below for explanation
 
-It is based on phusion-baseimage with ssh removed, for shell access whilst the container is running do `docker exec -it quassel-core /bin/bash`.
+It is based on ubuntu xenial with s6 overlay, for shell access whilst the container is running do `docker exec -it quassel-core /bin/bash`.
 
 ### User / Group Identifiers
 
@@ -48,13 +48,13 @@ Once you have the container running, fire up a quassel desktop client and connec
 
 You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.io/index.php/irc/) `#linuxserver.io` room on Freenode. Click 'File' > 'Networks' > 'Configure Networks' > 'Add' (under Networks section, not Servers) > 'Use preset' > Select 'Freenode' and then configure your identity using the tabs in the 'Network details' section. Once connected to Freenode, click `#join` and enter `#linuxserver.io`. That's it, you're done.
 
-## Updates / Monitoring
+## Info
 
-* Upgrade to the latest version of Quassel simply `docker restart quassel-core`.
 * Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
 ## Versions
 
++ **04.07.16:** Rebase to xenial
 + **14.10.15:** Removed the webui, turned out to be to unstable for most usecases.
 + **01.09.15:** Fixed mistake in README
 + **30.07.15:** Switched to internal baseimage, and fixed a bug with updating the webinterface. 
