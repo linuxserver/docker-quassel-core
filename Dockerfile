@@ -11,6 +11,7 @@ RUN \
  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 26F4EF8440618B66 && \
  apt-get update && \
  apt-get install -y \
+	libqt4-sql-psql \
 	libqt4-sql-sqlite \
 	quassel-core \
 	sqlite && \
