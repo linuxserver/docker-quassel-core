@@ -1,3 +1,0 @@
-#!/bin/bash
-
-exec /sbin/setuser abc quasselcore -c /config -p 4242 --require-ssl

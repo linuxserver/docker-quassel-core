@@ -1,24 +1,33 @@
-FROM linuxserver/baseimage
-MAINTAINER Stian Larsen <lonixx@gmail.com>
-ENV APTLIST="quassel-core libqt4-sql-sqlite sqlite"
+FROM lsiobase/xenial
+MAINTAINER sparklyballs
 
+# set environment variables
+ARG DEBIAN_FRONTEND="noninteractive"
 
-#Applying stuff
-RUN add-apt-repository ppa:mamarley/quassel  && \
-apt-get update -q && \
-apt-get install \
--yqq $APTLIST && \
-apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# add repositories
+RUN \
+ echo "deb http://ppa.launchpad.net/mamarley/quassel/ubuntu xenial main" >> /etc/apt/sources.list && \
+ echo "deb-src http://ppa.launchpad.net/mamarley/quassel/ubuntu xenial main" >> /etc/apt/sources.list && \
+ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 26F4EF8440618B66 && \
 
+# install packages
+ apt-get update && \
+ apt-get install -y \
+	libqt4-sql-psql \
+	libqt4-sql-sqlite \
+	quassel-core \
+	sqlite && \
 
-#Adding Custom files
-ADD init/ /etc/my_init.d/
-ADD services/ /etc/service/
-RUN chmod -v +x /etc/service/*/run
-RUN chmod -v +x /etc/my_init.d/*.sh
+# cleanup
+ apt-get clean && \
+ rm -rf \
+	/tmp/* \
+	/var/lib/apt/lists/* \
+	/var/tmp/*
 
+# add local files
+COPY root/ /
 
-# Volumes and Ports
-VOLUME /config
+# ports and volumes
 EXPOSE 4242
-
+VOLUME /config
