@@ -1,3 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-exec s6-setuidgid abc quasselcore -c /config -p 4242 --require-ssl
+exec \
+	s6-setuidgid abc quasselcore \
+	-c /config -p 4242 --require-ssl
