@@ -19,6 +19,9 @@ This container handles the IRC connection (quasselcore) and requires a desktop c
 
 Source: [quassel](http://bugs.quassel-irc.org/projects/quassel-irc/wiki)
 
+[![quassel](http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Apps-quassel-icon.png)][quassurl]
+[quassurl]: http://quassel-irc.org/
+
 ## Usage
 
 ```
