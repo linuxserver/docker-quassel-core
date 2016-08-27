@@ -17,8 +17,6 @@ This container handles the IRC connection (quasselcore) and requires a desktop c
 
 ![](http://bugs.quassel-irc.org/attachments/download/111/distributed.png)
 
-Source: [quassel](http://bugs.quassel-irc.org/projects/quassel-irc/wiki)
-
 [![quassel](http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Apps-quassel-icon.png)][quassurl]
 [quassurl]: http://quassel-irc.org/
 
@@ -56,6 +54,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 ```
 
 ## Setting up the application
+Quassel wiki: [quassel](http://bugs.quassel-irc.org/projects/quassel-irc/wiki)
 
 A great place to host a quassel instance is a VPS, such as [DigitalOcean](https://www.digitalocean.com/?refcode=501c48b34b8c). For $5 a month you can have a 24/7 IRC connection and be up and running in under 55 seconds (or so they claim).
 
