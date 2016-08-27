@@ -15,8 +15,8 @@ The [LinuxServer.io](https://linuxserver.io) team brings you another container r
 
 This container handles the IRC connection (quasselcore) and requires a desktop client (quasselclient) to be used and configured. It is designed to be always on and will keep your identity present in IRC even when your clients cannot be online. Backlog (history) is downloaded by your client upon reconnection allowing infinite scrollback through time.
 
-[![quasselwiki](http://bugs.quassel-irc.org/attachments/download/111/distributed.png)[quasselwiki]
-[quasselwiki]: http://bugs.quassel-irc.org/projects/quassel-irc/wiki
+[![quasselwiki](http://bugs.quassel-irc.org/attachments/download/111/distributed.png)[quasselwikiurl]
+[quasselwikiurl]: http://bugs.quassel-irc.org/projects/quassel-irc/wiki
 
 [![quassel](http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Apps-quassel-icon.png)][quassurl]
 [quassurl]: http://quassel-irc.org/
