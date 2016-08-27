@@ -6,14 +6,20 @@ The [LinuxServer.io](https://linuxserver.io) team brings you another container r
 * [Podcast](https://www.linuxserver.io/index.php/category/podcast/) covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
 
 # linuxserver/quassel-core
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg)][hub]
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg)][hub]
+[![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-quassel)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-quassel/)
+[hub]: https://hub.docker.com/r/linuxserver/quassel-core/
 
 [Quassel IRC](http://quassel-irc.org/) is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
 
 This container handles the IRC connection (quasselcore) and requires a desktop client (quasselclient) to be used and configured. It is designed to be always on and will keep your identity present in IRC even when your clients cannot be online. Backlog (history) is downloaded by your client upon reconnection allowing infinite scrollback through time.
 
-![](http://bugs.quassel-irc.org/attachments/download/111/distributed.png)
+[![quasselwiki](http://bugs.quassel-irc.org/attachments/download/111/distributed.png)][quasselwikiurl]
+[quasselwikiurl]: http://bugs.quassel-irc.org/projects/quassel-irc/wiki
 
-Source: [quassel](http://bugs.quassel-irc.org/projects/quassel-irc/wiki)
+[![quassel](http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Apps-quassel-icon.png)][quassurl]
+[quassurl]: http://quassel-irc.org/
 
 ## Usage
 
@@ -49,6 +55,7 @@ In this instance `PUID=1001` and `PGID=1001`. To find yours use `id user` as bel
 ```
 
 ## Setting up the application
+Quassel wiki: [quassel](http://bugs.quassel-irc.org/projects/quassel-irc/wiki)
 
 A great place to host a quassel instance is a VPS, such as [DigitalOcean](https://www.digitalocean.com/?refcode=501c48b34b8c). For $5 a month you can have a 24/7 IRC connection and be up and running in under 55 seconds (or so they claim).
 
@@ -62,6 +69,7 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 ## Versions
 
++ **28.08.16:** Add badges to README.
 + **10.08.16:** Rebase to xenial
 + **14.10.15:** Removed the webui, turned out to be to unstable for most usecases.
 + **01.09.15:** Fixed mistake in README
