@@ -9,7 +9,7 @@ The [LinuxServer.io](https://linuxserver.io) team brings you another container r
 [![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg)][hub]
 [![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg)][hub]
 [![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-quassel)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-quassel/)
-[hub]: https://hub.docker.com/r/linuxserver/quassel/
+[hub]: https://hub.docker.com/r/linuxserver/quassel-core/
 
 [Quassel IRC](http://quassel-irc.org/) is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
 
