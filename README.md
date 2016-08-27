@@ -6,6 +6,10 @@ The [LinuxServer.io](https://linuxserver.io) team brings you another container r
 * [Podcast](https://www.linuxserver.io/index.php/category/podcast/) covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
 
 # linuxserver/quassel-core
+[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg)][hub]
+[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg)][hub]
+[![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-quassel)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-quassel/)
+[hub]: https://hub.docker.com/r/linuxserver/quassel/
 
 [Quassel IRC](http://quassel-irc.org/) is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
 
@@ -62,6 +66,7 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 ## Versions
 
++ **28.08.16:** Add badges to README.
 + **10.08.16:** Rebase to xenial
 + **14.10.15:** Removed the webui, turned out to be to unstable for most usecases.
 + **01.09.15:** Fixed mistake in README
