@@ -14,7 +14,7 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 [![](https://images.microbadger.com/badges/image/linuxserver/quassel-core.svg)](http://microbadger.com/images/linuxserver/quassel-core "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg)][hub][![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-quassel)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-quassel/)
 [hub]: https://hub.docker.com/r/linuxserver/quassel-core/
 
-[Quassel IRC][quasselurl] is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
+[Quassel IRC][quassurl] is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
 
 This container handles the IRC connection (quasselcore) and requires a desktop client (quasselclient) to be used and configured. It is designed to be always on and will keep your identity present in IRC even when your clients cannot be online. Backlog (history) is downloaded by your client upon reconnection allowing infinite scrollback through time.
 
