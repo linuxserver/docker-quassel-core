@@ -1,22 +1,22 @@
-![https://linuxserver.io](https://www.linuxserver.io/wp-content/uploads/2015/06/linuxserver_medium.png)
+[linuxserverurl]: https://linuxserver.io
+[forumurl]: https://forum.linuxserver.io
+[ircurl]: https://www.linuxserver.io/index.php/irc/
+[podcasturl]: https://www.linuxserver.io/index.php/category/podcast/
 
-The [LinuxServer.io](https://linuxserver.io) team brings you another container release featuring easy user mapping and community support. Find us for support at:
-* [forum.linuxserver.io](https://forum.linuxserver.io)
-* [IRC](https://www.linuxserver.io/index.php/irc/) on freenode at `#linuxserver.io`
-* [Podcast](https://www.linuxserver.io/index.php/category/podcast/) covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+[![linuxserver.io](https://www.linuxserver.io/wp-content/uploads/2015/06/linuxserver_medium.png)][linuxserverurl]
+
+The [LinuxServer.io][linuxserverurl] team brings you another container release featuring easy user mapping and community support. Find us for support at:
+* [forum.linuxserver.io][forumurl]
+* [IRC][ircurl] on freenode at `#linuxserver.io`
+* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
 
 # linuxserver/quassel-core
-[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg)][hub]
-[![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg)][hub]
-[![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-quassel)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-quassel/)
+[![](https://images.microbadger.com/badges/image/linuxserver/quassel-core.svg)](http://microbadger.com/images/linuxserver/quassel-core "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg)][hub][![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io/linuxserver-quassel)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io/job/linuxserver-quassel/)
 [hub]: https://hub.docker.com/r/linuxserver/quassel-core/
 
-[Quassel IRC](http://quassel-irc.org/) is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
+[Quassel IRC][quasselurl] is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
 
 This container handles the IRC connection (quasselcore) and requires a desktop client (quasselclient) to be used and configured. It is designed to be always on and will keep your identity present in IRC even when your clients cannot be online. Backlog (history) is downloaded by your client upon reconnection allowing infinite scrollback through time.
-
-[![quasselwiki](http://bugs.quassel-irc.org/attachments/download/111/distributed.png)][quasselwikiurl]
-[quasselwikiurl]: http://bugs.quassel-irc.org/projects/quassel-irc/wiki
 
 [![quassel](http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/256/Apps-quassel-icon.png)][quassurl]
 [quassurl]: http://quassel-irc.org/
@@ -69,6 +69,7 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 ## Versions
 
++ **10.09.16:** Add layer badges to README.
 + **28.08.16:** Add badges to README.
 + **10.08.16:** Rebase to xenial
 + **14.10.15:** Removed the webui, turned out to be to unstable for most usecases.
