@@ -13,8 +13,8 @@ RUN \
 # install packages
  apt-get update && \
  apt-get install -y \
-	libqt4-sql-psql \
-	libqt4-sql-sqlite \
+	libqt5sql5-psql \
+	libqt5sql5-sqlite \
 	quassel-core \
 	sqlite && \
 
