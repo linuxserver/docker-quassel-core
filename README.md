@@ -69,7 +69,8 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 ## Versions
 
-+ **10.09.16:** Add layer badges to README.
++ **23.09.16:** Use QT5 dependencies (thanks bauerj).
++ + **10.09.16:** Add layer badges to README.
 + **28.08.16:** Add badges to README.
 + **10.08.16:** Rebase to xenial
 + **14.10.15:** Removed the webui, turned out to be to unstable for most usecases.
