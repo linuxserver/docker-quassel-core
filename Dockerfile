@@ -4,6 +4,7 @@ MAINTAINER sparklyballs
 # set environment variables
 ARG DEBIAN_FRONTEND="noninteractive"
 
+ENV TEST=test
 # add repositories
 RUN \
  echo "deb http://ppa.launchpad.net/mamarley/quassel/ubuntu xenial main" >> /etc/apt/sources.list && \
