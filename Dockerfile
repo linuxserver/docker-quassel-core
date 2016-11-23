@@ -21,15 +21,6 @@ RUN \
 	qt-dev \
 	tar && \
 
-# install runtime packages
- apk add --no-cache \
-	icu-libs \
-	libressl \
-	qca \
-	qt \
-	qt-postgresql \
-	qt-sqlite && \
-
 # compile quassel
  mkdir -p \
 	/tmp/quassel/build && \
@@ -56,6 +47,22 @@ RUN \
  make && \
  make install install/fast && \
  paxmark -m /usr/bin/quasselcore && \
+
+# determine build packages to keep
+ RUNTIME_PACKAGES="$( \
+	scanelf --needed --nobanner /usr/bin/quasselcore \
+	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+	| sort -u \
+	| xargs -r apk info --installed \
+	| sort -u \
+	)" && \
+
+# install runtime packages
+ apk add --no-cache \
+	${RUNTIME_PACKAGES} \
+	icu-libs \
+	qt-postgresql \
+	qt-sqlite && \
 
 # cleanup
  apk del --purge \
