@@ -50,7 +50,7 @@ RUN \
 
 # determine build packages to keep
  COMMON_RUNTIME_PACKAGES="$( \
-	scanelf --needed --nobanner /usr/bin/quasselcore \
+	scanelf --needed --nobanner /usr/bin/quassel \
 	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
 	| sort -u \
 	| xargs -r apk info --installed \
