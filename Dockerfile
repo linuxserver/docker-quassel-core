@@ -49,7 +49,14 @@ RUN \
  paxmark -m /usr/bin/quasselcore && \
 
 # determine build packages to keep
- RUNTIME_PACKAGES="$( \
+ COMMON_RUNTIME_PACKAGES="$( \
+	scanelf --needed --nobanner /usr/bin/quasselcore \
+	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+	| sort -u \
+	| xargs -r apk info --installed \
+	| sort -u \
+	)" && \
+ CORE_RUNTIME_PACKAGES="$( \
 	scanelf --needed --nobanner /usr/bin/quasselcore \
 	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
 	| sort -u \
@@ -59,8 +66,10 @@ RUN \
 
 # install runtime packages
  apk add --no-cache \
-	${RUNTIME_PACKAGES} \
+	${COMMON_RUNTIME_PACKAGES} \
+	${CORE_RUNTIME_PACKAGES} \
 	icu-libs \
+	libressl \
 	qt-postgresql \
 	qt-sqlite && \
 
