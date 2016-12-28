@@ -1,4 +1,4 @@
-FROM lsiobase/alpine:edge
+FROM lsiobase/alpine:3.5
 MAINTAINER sparklyballs
 
 # build variables

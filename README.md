@@ -75,6 +75,7 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 ## Versions
 
++ **28.12.16:** Rebase to alpine:3.5.
 + **23.11.16:** Rebase to alpine:edge.
 + **23.09.16:** Use QT5 dependencies (thanks bauerj).
 + + **10.09.16:** Add layer badges to README.
