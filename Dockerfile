@@ -1,10 +1,15 @@
 FROM lsiobase/alpine:3.5
 MAINTAINER sparklyballs
 
-# build variables
+# package versions
 ARG QUASSEL_VERSION="0.12.4"
 
-# install build packages
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+
+# install build packages
 RUN \
  apk add --no-cache --virtual=build-dependencies \
 	cmake \
@@ -21,14 +26,21 @@ RUN \
 	qt-dev \
 	tar && \
 
+# install runtime packages
+ apk add --no-cache \
+	icu-libs \
+	libressl \
+	qt-postgresql \
+	qt-sqlite && \
+
 # compile quassel
  mkdir -p \
 	/tmp/quassel/build && \
  curl -o \
- /tmp/quassel-src.tar.bz2 -L \
-	"http://www.quassel-irc.org/pub/quassel-${QUASSEL_VERSION}.tar.bz2" && \
+ /tmp/quassel-src.tar.gz -L \
+	"https://github.com/quassel/quassel/archive/${QUASSEL_VERSION}.tar.gz" && \
  tar xf \
- /tmp/quassel-src.tar.bz2 -C \
+ /tmp/quassel-src.tar.gz -C \
 	/tmp/quassel --strip-components=1 && \
  cd /tmp/quassel && \
  cmake \
@@ -48,7 +60,7 @@ RUN \
  make install install/fast && \
  paxmark -m /usr/bin/quasselcore && \
 
-# determine build packages to keep
+# determine build packages to keep
  COMMON_RUNTIME_PACKAGES="$( \
 	scanelf --needed --nobanner /usr/bin/quassel \
 	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
@@ -64,16 +76,12 @@ RUN \
 	| sort -u \
 	)" && \
 
-# install runtime packages
+# install packages dependant on searches above.
  apk add --no-cache \
 	${COMMON_RUNTIME_PACKAGES} \
-	${CORE_RUNTIME_PACKAGES} \
-	icu-libs \
-	libressl \
-	qt-postgresql \
-	qt-sqlite && \
+	${CORE_RUNTIME_PACKAGES} && \
 
-# cleanup
+# cleanup
  apk del --purge \
 	build-dependencies && \
  rm -rf \
