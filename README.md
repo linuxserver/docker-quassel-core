@@ -13,7 +13,7 @@ The [LinuxServer.io][linuxserverurl] team brings you another container release f
 * [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
 
 # linuxserver/quassel-core
-[![](https://images.microbadger.com/badges/image/linuxserver/quassel-core.svg)](http://microbadger.com/images/linuxserver/quassel-core "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg)][hub][![Build Status](http://jenkins.linuxserver.io:8080/buildStatus/icon?job=Dockers/LinuxServer.io-hub-built/linuxserver-quassel)](http://jenkins.linuxserver.io:8080/job/Dockers/job/LinuxServer.io-hub-built/job/linuxserver-quassel/)
+[![](https://images.microbadger.com/badges/version/linuxserver/quassel-core.svg)](https://microbadger.com/images/linuxserver/quassel-core "Get your own version badge on microbadger.com")[![](https://images.microbadger.com/badges/image/linuxserver/quassel-core.svg)](https://microbadger.com/images/linuxserver/quassel-core "Get your own image badge on microbadger.com")[![Docker Pulls](https://img.shields.io/docker/pulls/linuxserver/quassel-core.svg)][hub][![Docker Stars](https://img.shields.io/docker/stars/linuxserver/quassel-core.svg)][hub][![Build Status](https://ci.linuxserver.io/buildStatus/icon?job=Docker-Builders/x86-64/x86-64-quassel-core)](https://ci.linuxserver.io/job/Docker-Builders/job/x86-64/job/x86-64-quassel-core/)
 
 [Quassel IRC][appurl] is a modern, cross-platform, distributed IRC client, meaning that one (or multiple) client(s) can attach to and detach from a central core.
 
@@ -73,8 +73,17 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 * Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
+* container version number 
+
+`docker inspect -f '{{ index .Config.Labels "build_version" }}' quassel-core`
+
+* image version number
+
+`docker inspect -f '{{ index .Config.Labels "build_version" }}' linuxserver/quassel-core`
+
 ## Versions
 
++ **12.07.17:** Add inspect commands to README, move to jenkins build and push.
 + **27.05.17:** Rebase to alpine:3.6.
 + **13.05.17:** Switch to git source.
 + **28.12.16:** Rebase to alpine:3.5.

@@ -26,7 +26,7 @@ RUN \
 	qt-dev \
 	tar && \
 
-# install runtime packages
+# install runtime packages
  apk add --no-cache \
 	icu-libs \
 	libressl \
