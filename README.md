@@ -71,7 +71,7 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 ## Info
 
-* Monitor the logs of the container in realtime `docker logs -f quassel-core`.
+Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
 * container version number 
 
