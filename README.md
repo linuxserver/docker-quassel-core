@@ -83,6 +83,7 @@ Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
 ## Versions
 
++ **26.11.2017:** Use cpu core counting routine to speed up build time.
 + **12.07.17:** Add inspect commands to README, move to jenkins build and push.
 + **27.05.17:** Rebase to alpine:3.6.
 + **13.05.17:** Switch to git source.
