@@ -83,20 +83,18 @@ Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
 ## Versions
 
-+ **26.11.2017:** Use cpu core counting routine to speed up build time.
++ **09.12.17:** Rebase to alpine:3.7.
++ **26.11.17:** Use cpu core counting routine to speed up build time.
 + **12.07.17:** Add inspect commands to README, move to jenkins build and push.
 + **27.05.17:** Rebase to alpine:3.6.
 + **13.05.17:** Switch to git source.
 + **28.12.16:** Rebase to alpine:3.5.
 + **23.11.16:** Rebase to alpine:edge.
 + **23.09.16:** Use QT5 dependencies (thanks bauerj).
-+ + **10.09.16:** Add layer badges to README.
++ **10.09.16:** Add layer badges to README.
 + **28.08.16:** Add badges to README.
 + **10.08.16:** Rebase to xenial
 + **14.10.15:** Removed the webui, turned out to be to unstable for most usecases.
 + **01.09.15:** Fixed mistake in README
 + **30.07.15:** Switched to internal baseimage, and fixed a bug with updating the webinterface. 
 + **06.07.15:** Enabled BLOWFISH encryption and added a (optional) webinterface, for the times you dont have access to your client.
-+ **2.1:** LinuxServer.io related documentation updates
-+ **2.0:** New gid\uid fix, and code cleanup.
-+ **1.0:** Inital release

@@ -1,16 +1,16 @@
-FROM lsiobase/alpine:3.6
-MAINTAINER sparklyballs
-
-# package versions
-ARG QUASSEL_VERSION="0.12.4"
+FROM lsiobase/alpine:3.7
 
 # set version label
 ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="sparklyballs"
 
-# install build packages
+# package versions
+ARG QUASSEL_VERSION="0.12.4"
+
 RUN \
+ echo "**** install build packages ****" && \
  apk add --no-cache --virtual=build-dependencies \
 	cmake \
 	curl \
@@ -25,15 +25,13 @@ RUN \
 	qca-dev \
 	qt-dev \
 	tar && \
-
-# install runtime packages
+ echo "**** install runtime packages ****" && \
  apk add --no-cache \
 	icu-libs \
 	libressl \
 	qt-postgresql \
 	qt-sqlite && \
-
-# compile quassel
+ echo "**** compile quassel ****" && \
  mkdir -p \
 	/tmp/quassel/build && \
  curl -o \
@@ -56,8 +54,7 @@ RUN \
 	-DWITH_PHONON=OFF \
 	-DWITH_WEBKIT=OFF \
 	../quassel && \
-
-# attempt to set number of cores available for make to use
+ echo "**** attempt to set number of cores available for make to use ****" && \
  set -ex && \
  CPU_CORES=$( < /proc/cpuinfo grep -c processor ) || echo "failed cpu look up" && \
  if echo $CPU_CORES | grep -E  -q '^[0-9]+$'; then \
@@ -69,13 +66,11 @@ RUN \
  elif [ "$CPU_CORES" -gt 3 ]; then \
 	CPU_CORES=$(( CPU_CORES  - 1 )); fi \
  else CPU_CORES="1"; fi && \
-
  make -j $CPU_CORES && \
  make install install/fast && \
  set +ex && \
  paxmark -m /usr/bin/quasselcore && \
-
-# determine build packages to keep
+ echo "**** determine build packages to keep ****" && \
  COMMON_RUNTIME_PACKAGES="$( \
 	scanelf --needed --nobanner /usr/bin/quassel \
 	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
@@ -90,13 +85,10 @@ RUN \
 	| xargs -r apk info --installed \
 	| sort -u \
 	)" && \
-
-# install packages dependant on searches above.
  apk add --no-cache \
 	${COMMON_RUNTIME_PACKAGES} \
 	${CORE_RUNTIME_PACKAGES} && \
-
-# cleanup
+ echo "**** cleanup ****" && \
  apk del --purge \
 	build-dependencies && \
  rm -rf \
