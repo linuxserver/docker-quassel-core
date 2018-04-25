@@ -7,7 +7,7 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="sparklyballs"
 
 # package versions
-ARG QUASSEL_VERSION="0.12.4"
+ARG QUASSEL_VERSION="0.12.5"
 
 RUN \
  echo "**** install build packages ****" && \
