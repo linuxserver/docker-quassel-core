@@ -1,17 +1,12 @@
-FROM lsiobase/alpine:3.7
-
-# set version label
-ARG BUILD_DATE
-ARG VERSION
-LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="sparklyballs"
+FROM lsiobase/alpine:3.8 as buildstage
+############## build stage ##############
 
 # package versions
 ARG QUASSEL_VERSION="0.12.5"
 
 RUN \
  echo "**** install build packages ****" && \
- apk add --no-cache --virtual=build-dependencies \
+ apk add --no-cache \
 	cmake \
 	curl \
 	dbus-dev \
@@ -19,19 +14,18 @@ RUN \
 	gcc \
 	git \
 	icu-dev \
+	icu-libs \
+	libressl \
 	libressl-dev \
 	make \
 	paxmark \
 	qca-dev \
 	qt-dev \
-	tar && \
- echo "**** install runtime packages ****" && \
- apk add --no-cache \
-	icu-libs \
-	libressl \
 	qt-postgresql \
-	qt-sqlite && \
- echo "**** compile quassel ****" && \
+	qt-sqlite \
+	tar
+RUN \
+ echo "**** fetch source code  ****" && \
  mkdir -p \
 	/tmp/quassel/build && \
  curl -o \
@@ -39,10 +33,13 @@ RUN \
 	"https://github.com/quassel/quassel/archive/${QUASSEL_VERSION}.tar.gz" && \
  tar xf \
  /tmp/quassel-src.tar.gz -C \
-	/tmp/quassel --strip-components=1 && \
+	/tmp/quassel --strip-components=1
+
+RUN \
+ echo "**** compile quasselcore ****" && \
  cd /tmp/quassel && \
  cmake \
-	-DCMAKE_INSTALL_PREFIX=/usr/ \
+	-DCMAKE_INSTALL_PREFIX=/tmp/quassel/build/ \
 	-DWITH_KDE=0 \
 	-DCMAKE_BUILD_TYPE="Release" \
 	-DWITH_OPENSSL=ON \
@@ -56,34 +53,28 @@ RUN \
 	../quassel && \
  make && \
  make install install/fast && \
- paxmark -m /usr/bin/quasselcore && \
- echo "**** determine build packages to keep ****" && \
- COMMON_RUNTIME_PACKAGES="$( \
-	scanelf --needed --nobanner /usr/bin/quassel \
-	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-	| sort -u \
-	| xargs -r apk info --installed \
-	| sort -u \
-	)" && \
- CORE_RUNTIME_PACKAGES="$( \
-	scanelf --needed --nobanner /usr/bin/quasselcore \
-	| awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
-	| sort -u \
-	| xargs -r apk info --installed \
-	| sort -u \
-	)" && \
+ paxmark -m /tmp/quassel/build/bin/quasselcore
+
+############## runtime stage ##############
+FROM lsiobase/alpine:3.8
+
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="sparklyballs"
+
+RUN \
+ echo "**** install runtime packages ****" && \
  apk add --no-cache \
-	${COMMON_RUNTIME_PACKAGES} \
-	${CORE_RUNTIME_PACKAGES} && \
- echo "**** cleanup ****" && \
- apk del --purge \
-	build-dependencies && \
- rm -rf \
-	/tmp/*
+	icu-libs \
+	libressl \
+	qca \
+	qt-postgresql \
+	qt-sqlite \
+	qt-x11
 
-# add local files
+# copy local files and buildstage artifacts
 COPY root/ /
-
-# ports and volumes
-EXPOSE 4242
-VOLUME /config
+COPY --from=buildstage /tmp/quassel/build/bin/ usr/bin/
+COPY --from=buildstage /tmp/quassel/build/share/ /usr/share/
