@@ -83,6 +83,7 @@ Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
 ## Versions
 
++ **30.07.18:** Rebase to alpine:3.8 and use buildstage.
 + **03.01.18:** Deprecate cpu_core routine lack of scaling.
 + **09.12.17:** Rebase to alpine:3.7.
 + **26.11.17:** Use cpu core counting routine to speed up build time.
