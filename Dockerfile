@@ -71,10 +71,12 @@ RUN \
  apk add --no-cache \
 	icu-libs \
 	libressl \
-	qca \
-	qt-postgresql \
-	qt-sqlite \
-	qt-x11
+#	qca \
+	qt5-qtbase \
+	qt5-qtscript \
+	qt5-qtbase-postgresql \
+	qt5-qtbase-sqlite \
+	qt5-qtbase-x11
 
 # copy local files and buildstage artifacts
 COPY root/ /
