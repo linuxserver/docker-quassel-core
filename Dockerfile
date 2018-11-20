@@ -19,10 +19,12 @@ RUN \
 	libressl-dev \
 	make \
 	paxmark \
-	qca-dev \
-	qt-dev \
-	qt-postgresql \
-	qt-sqlite \
+	qt5-qtbase-dev \
+	qt5-qttools-dev \
+	qt5-qtbase-postgresql \
+	qt5-qtbase-sqlite \
+	qt5-qtscript-dev \
+#	qca-dev \
 	tar
 RUN \
  echo "**** fetch source code  ****" && \
