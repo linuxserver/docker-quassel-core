@@ -2,7 +2,7 @@ FROM lsiobase/alpine:3.8 as buildstage
 ############## build stage ##############
 
 # package versions
-ARG QUASSEL_VERSION="0.13"
+ARG QUASSEL_VERSION="0.13.0"
 
 RUN \
  echo "**** install build packages ****" && \
