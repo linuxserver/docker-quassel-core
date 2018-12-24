@@ -76,3 +76,5 @@ RUN \
 
 # copy local files and buildstage artifacts
 COPY root/ /
+COPY --from=buildstage /tmp/quassel/build/bin/ usr/bin/
+COPY --from=buildstage /tmp/quassel/build/share/ /usr/share/
