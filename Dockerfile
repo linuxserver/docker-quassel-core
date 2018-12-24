@@ -19,11 +19,15 @@ RUN \
 	libressl-dev \
 	make \
 	paxmark \
-	qca-dev \
-	qt-dev \
-	qt-postgresql \
-	qt-sqlite \
-	tar
+	qt5-qtbase-dev \
+	qt5-qtbase-postgresql \
+	qt5-qtbase-sqlite \
+	qt5-qtscript-dev \
+	tar && \
+ apk add --no-cache \
+        --repository http://nl.alpinelinux.org/alpine/edge/community \
+    qca 
+ 
 RUN \
  echo "**** fetch source code  ****" && \
  mkdir -p \
@@ -69,10 +73,12 @@ RUN \
  apk add --no-cache \
 	icu-libs \
 	libressl \
-	qca \
-	qt-postgresql \
-	qt-sqlite \
-	qt-x11
+	qt5-qtbase-postgresql \
+	qt5-qtbase-sqlite \
+	qt5-qtbase-x11 && \
+ apk add --no-cache \
+        --repository http://nl.alpinelinux.org/alpine/edge/community \
+    qca 
 
 # copy local files and buildstage artifacts
 COPY root/ /
