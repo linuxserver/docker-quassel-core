@@ -23,6 +23,7 @@ RUN \
 	qt5-qtbase-postgresql \
 	qt5-qtbase-sqlite \
 	qt5-qtscript-dev \
+	qt5-qttools-dev \
 	tar && \
  apk add --no-cache \
         --repository http://nl.alpinelinux.org/alpine/edge/community \
