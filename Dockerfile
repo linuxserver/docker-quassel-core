@@ -31,8 +31,6 @@ RUN \
 
 # add local files
 COPY root/ /
-COPY --from=buildstage /tmp/quassel/build/bin/ usr/bin/
-COPY --from=buildstage /tmp/quassel/build/share/ /usr/share/
 
 # ports and volumes
 EXPOSE 4242
