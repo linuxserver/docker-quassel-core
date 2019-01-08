@@ -83,6 +83,7 @@ Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
 ## Versions
 
++ **08.01.19:** Rebase to Ubuntu Bionic and upgrade to Quassel`0.13.0` See [here.](https://quassel-irc.org/node/134)
 + **30.07.18:** Rebase to alpine:3.8 and use buildstage.
 + **03.01.18:** Deprecate cpu_core routine lack of scaling.
 + **09.12.17:** Rebase to alpine:3.7.
