@@ -12,7 +12,7 @@ ENV HOME /config
 
 RUN \
  apt-get update && \
- apt-get install -y gnupg && \
+ apt-get install -y gnupg libqt5sql5-psql && \
  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 26F4EF8440618B66 && \
  echo "**** add repository ****" && \
  echo "deb http://ppa.launchpad.net/mamarley/quassel/ubuntu bionic main" > \
