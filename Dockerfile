@@ -17,7 +17,7 @@ RUN \
  echo "**** add repository ****" && \
  echo "deb http://ppa.launchpad.net/mamarley/quassel/ubuntu bionic main" > \
         /etc/apt/sources.list.d/quassel.list && \
- echo "deb-src http://ppa.launchpad.net/mamarley/quassel/ubuntu bionic main" > \
+ echo "deb-src http://ppa.launchpad.net/mamarley/quassel/ubuntu bionic main" >> \
         /etc/apt/sources.list.d/quassel.list && \
  echo "**** install packages ****" && \
  apt-get update && \
