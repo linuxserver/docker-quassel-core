@@ -35,7 +35,7 @@ docker create \
 
 ## Parameters
 
-`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side. 
+`The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side.
 For example with a port -p external:internal - what this shows is the port mapping from internal to external of the container.
 So -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080
 http://192.168.x.x:8080 would show you what's running INSIDE the container on port 80.`
@@ -73,7 +73,7 @@ You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.i
 
 Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
-* container version number 
+* container version number
 
 `docker inspect -f '{{ index .Config.Labels "build_version" }}' quassel-core`
 
@@ -83,6 +83,7 @@ Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 
 ## Versions
 
++ **26.01.19:** Add pipeline logic and multi arch.
 + **08.01.19:** Rebase to Ubuntu Bionic and upgrade to Quassel`0.13.0` See [here.](https://quassel-irc.org/node/134)
 + **30.07.18:** Rebase to alpine:3.8 and use buildstage.
 + **03.01.18:** Deprecate cpu_core routine lack of scaling.
@@ -99,5 +100,5 @@ Monitor the logs of the container in realtime `docker logs -f quassel-core`.
 + **10.08.16:** Rebase to xenial
 + **14.10.15:** Removed the webui, turned out to be to unstable for most usecases.
 + **01.09.15:** Fixed mistake in README
-+ **30.07.15:** Switched to internal baseimage, and fixed a bug with updating the webinterface. 
++ **30.07.15:** Switched to internal baseimage, and fixed a bug with updating the webinterface.
 + **06.07.15:** Enabled BLOWFISH encryption and added a (optional) webinterface, for the times you dont have access to your client.
