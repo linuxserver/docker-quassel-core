@@ -1,0 +1,29 @@
+---
+
+# jenkins variables
+project_name: docker-quassel-core
+external_type: github_stable
+release_type: stable
+release_tag: latest
+ls_branch: quassel_dev_input
+repo_vars:
+  - BUILD_VERSION_ARG = 'BEETS_VERSION'
+  - EXT_GIT_BRANCH = 'master'
+  - EXT_USER = 'quassel'
+  - EXT_REPO = 'quassel'
+  - LS_USER = 'linuxserver'
+  - LS_REPO = 'docker-quassel-core'
+  - CONTAINER_NAME = 'quassel-core'
+  - DOCKERHUB_IMAGE = 'linuxserver/quassel-core'
+  - DEV_DOCKERHUB_IMAGE = 'lsiodev/quassel-core'
+  - PR_DOCKERHUB_IMAGE = 'lspipepr/quassel-core'
+  - DIST_IMAGE = 'alpine'
+  - MULTIARCH='true'
+  - CI='true'
+  - CI_WEB='false'
+  - CI_PORT='4242'
+  - CI_SSL='false'
+  - CI_DELAY='30'
+  - CI_DOCKERENV='TZ=US/Pacific'
+  - CI_AUTH='user:password'
+  - CI_WEBPATH=''
