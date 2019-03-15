@@ -21,7 +21,7 @@ pipeline {
     DEV_DOCKERHUB_IMAGE = 'lsiodev/quassel-core'
     PR_DOCKERHUB_IMAGE = 'lspipepr/quassel-core'
     DIST_IMAGE = 'alpine'
-    MULTIARCH='true'
+    MULTIARCH='false'
     CI='true'
     CI_WEB='false'
     CI_PORT='4242'
@@ -122,10 +122,10 @@ pipeline {
         }
       }
     }
-    // If this is a quassel_dev_input build use live docker endpoints
+    // If this is a stateless build use live docker endpoints
     stage("Set ENV live build"){
       when {
-        branch "quassel_dev_input"
+        branch "stateless"
         environment name: 'CHANGE_ID', value: ''
       }
       steps {
@@ -143,7 +143,7 @@ pipeline {
     // If this is a dev build use dev docker endpoints
     stage("Set ENV dev build"){
       when {
-        not {branch "quassel_dev_input"}
+        not {branch "stateless"}
         environment name: 'CHANGE_ID', value: ''
       }
       steps {
@@ -181,7 +181,7 @@ pipeline {
     // Use helper containers to render templated files
     stage('Update-Templates') {
       when {
-        branch "quassel_dev_input"
+        branch "stateless"
         environment name: 'CHANGE_ID', value: ''
         expression {
           env.CONTAINER_NAME != null
@@ -192,13 +192,13 @@ pipeline {
               set -e
               TEMPDIR=$(mktemp -d)
               docker pull linuxserver/jenkins-builder:latest
-              docker run --rm -e CONTAINER_NAME=${CONTAINER_NAME} -e GITHUB_BRANCH=quassel_dev_input -v ${TEMPDIR}:/ansible/jenkins linuxserver/jenkins-builder:latest 
+              docker run --rm -e CONTAINER_NAME=${CONTAINER_NAME} -e GITHUB_BRANCH=stateless -v ${TEMPDIR}:/ansible/jenkins linuxserver/jenkins-builder:latest 
               docker pull linuxserver/doc-builder:latest
-              docker run --rm -e CONTAINER_NAME=${CONTAINER_NAME} -e GITHUB_BRANCH=quassel_dev_input -v ${TEMPDIR}:/ansible/readme linuxserver/doc-builder:latest
+              docker run --rm -e CONTAINER_NAME=${CONTAINER_NAME} -e GITHUB_BRANCH=stateless -v ${TEMPDIR}:/ansible/readme linuxserver/doc-builder:latest
               if [ "$(md5sum ${TEMPDIR}/${LS_REPO}/Jenkinsfile | awk '{ print $1 }')" != "$(md5sum Jenkinsfile | awk '{ print $1 }')" ] || [ "$(md5sum ${TEMPDIR}/${CONTAINER_NAME}/README.md | awk '{ print $1 }')" != "$(md5sum README.md | awk '{ print $1 }')" ]; then
                 mkdir -p ${TEMPDIR}/repo
                 git clone https://github.com/${LS_USER}/${LS_REPO}.git ${TEMPDIR}/repo/${LS_REPO}
-                git --git-dir ${TEMPDIR}/repo/${LS_REPO}/.git checkout -f quassel_dev_input
+                git --git-dir ${TEMPDIR}/repo/${LS_REPO}/.git checkout -f stateless
                 cp ${TEMPDIR}/${CONTAINER_NAME}/README.md ${TEMPDIR}/repo/${LS_REPO}/
                 cp ${TEMPDIR}/docker-${CONTAINER_NAME}/Jenkinsfile ${TEMPDIR}/repo/${LS_REPO}/
                 cd ${TEMPDIR}/repo/${LS_REPO}/
@@ -229,7 +229,7 @@ pipeline {
     // Exit the build if the Templated files were just updated
     stage('Template-exit') {
       when {
-        branch "quassel_dev_input"
+        branch "stateless"
         environment name: 'CHANGE_ID', value: ''
         environment name: 'FILES_UPDATED', value: 'true'
         expression {
@@ -332,7 +332,7 @@ pipeline {
     // Take the image we just built and dump package versions for comparison
     stage('Update-packages') {
       when {
-        branch "quassel_dev_input"
+        branch "stateless"
         environment name: 'CHANGE_ID', value: ''
         environment name: 'EXIT_STATUS', value: ''
       }
@@ -360,7 +360,7 @@ pipeline {
               echo "Package tag sha from current packages in buit container is ${NEW_PACKAGE_TAG} comparing to old ${PACKAGE_TAG} from github"
               if [ "${NEW_PACKAGE_TAG}" != "${PACKAGE_TAG}" ]; then
                 git clone https://github.com/${LS_USER}/${LS_REPO}.git ${TEMPDIR}/${LS_REPO}
-                git --git-dir ${TEMPDIR}/${LS_REPO}/.git checkout -f quassel_dev_input
+                git --git-dir ${TEMPDIR}/${LS_REPO}/.git checkout -f stateless
                 cp ${TEMPDIR}/package_versions.txt ${TEMPDIR}/${LS_REPO}/
                 cd ${TEMPDIR}/${LS_REPO}/
                 wait
@@ -384,7 +384,7 @@ pipeline {
     // Exit the build if the package file was just updated
     stage('PACKAGE-exit') {
       when {
-        branch "quassel_dev_input"
+        branch "stateless"
         environment name: 'CHANGE_ID', value: ''
         environment name: 'PACKAGE_UPDATED', value: 'true'
         environment name: 'EXIT_STATUS', value: ''
@@ -398,7 +398,7 @@ pipeline {
     // Exit the build if this is just a package check and there are no changes to push
     stage('PACKAGECHECK-exit') {
       when {
-        branch "quassel_dev_input"
+        branch "stateless"
         environment name: 'CHANGE_ID', value: ''
         environment name: 'PACKAGE_UPDATED', value: 'false'
         environment name: 'EXIT_STATUS', value: ''
@@ -551,7 +551,7 @@ pipeline {
     // If this is a public release tag it in the LS Github
     stage('Github-Tag-Push-Release') {
       when {
-        branch "quassel_dev_input"
+        branch "stateless"
         expression {
           env.LS_RELEASE != env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-ls' + env.LS_TAG_NUMBER
         }
@@ -563,14 +563,14 @@ pipeline {
         sh '''curl -H "Authorization: token ${GITHUB_TOKEN}" -X POST https://api.github.com/repos/${LS_USER}/${LS_REPO}/git/tags \
         -d '{"tag":"'${EXT_RELEASE_CLEAN}'-pkg-'${PACKAGE_TAG}'-ls'${LS_TAG_NUMBER}'",\
              "object": "'${COMMIT_SHA}'",\
-             "message": "Tagging Release '${EXT_RELEASE_CLEAN}'-pkg-'${PACKAGE_TAG}'-ls'${LS_TAG_NUMBER}' to quassel_dev_input",\
+             "message": "Tagging Release '${EXT_RELEASE_CLEAN}'-pkg-'${PACKAGE_TAG}'-ls'${LS_TAG_NUMBER}' to stateless",\
              "type": "commit",\
              "tagger": {"name": "LinuxServer Jenkins","email": "jenkins@linuxserver.io","date": "'${GITHUB_DATE}'"}}' '''
         echo "Pushing New release for Tag"
         sh '''#! /bin/bash
               curl -s https://api.github.com/repos/${EXT_USER}/${EXT_REPO}/releases/latest | jq '. |.body' | sed 's:^.\\(.*\\).$:\\1:' > releasebody.json
               echo '{"tag_name":"'${EXT_RELEASE_CLEAN}'-pkg-'${PACKAGE_TAG}'-ls'${LS_TAG_NUMBER}'",\
-                     "target_commitish": "quassel_dev_input",\
+                     "target_commitish": "stateless",\
                      "name": "'${EXT_RELEASE_CLEAN}'-pkg-'${PACKAGE_TAG}'-ls'${LS_TAG_NUMBER}'",\
                      "body": "**LinuxServer Changes:**\\n\\n'${LS_RELEASE_NOTES}'\\n**'${EXT_REPO}' Changes:**\\n\\n' > start
               printf '","draft": false,"prerelease": false}' >> releasebody.json
