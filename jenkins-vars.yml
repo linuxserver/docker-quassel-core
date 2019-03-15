@@ -18,7 +18,7 @@ repo_vars:
   - DEV_DOCKERHUB_IMAGE = 'lsiodev/quassel-core'
   - PR_DOCKERHUB_IMAGE = 'lspipepr/quassel-core'
   - DIST_IMAGE = 'alpine'
-  - MULTIARCH='true'
+  - MULTIARCH='false'
   - CI='true'
   - CI_WEB='false'
   - CI_PORT='4242'
