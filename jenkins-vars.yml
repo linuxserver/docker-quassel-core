@@ -5,7 +5,7 @@ project_name: docker-quassel-core
 external_type: github_stable
 release_type: stable
 release_tag: latest
-ls_branch: quassel_dev_input
+ls_branch: stateless
 repo_vars:
   - BUILD_VERSION_ARG = 'BEETS_VERSION'
   - EXT_GIT_BRANCH = 'master'
