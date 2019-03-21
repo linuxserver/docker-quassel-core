@@ -37,9 +37,13 @@ param_device_map: false
 cap_add_param: false
 
 # optional container parameters
-opt_param_usage_include_env: false
+opt_param_usage_include_env: true
+opt_param_env_vars:
+  - { env_var: "RUN_OPTS", env_value: "--config-from-environment", desc: "Custom CLI options for Quassel" }
 opt_param_usage_include_vols: false
-opt_param_usage_include_ports: false
+opt_param_usage_include_ports: true
+opt_param_ports:
+  - { external_port: "113", internal_port: "10113", port_desc: "Optional Ident Port" }
 opt_param_device_map: false
 opt_cap_add_param: false
 optional_block_1: false
@@ -55,9 +59,46 @@ app_setup_block: |
 
   You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.io/index.php/irc/) `#linuxserver.io` room on Freenode. Click 'File' > 'Networks' > 'Configure Networks' > 'Add' (under Networks section, not Servers) > 'Use preset' > Select 'Freenode' and then configure your identity using the tabs in the 'Network details' section. Once connected to Freenode, click `#join` and enter `#linuxserver.io`. That's it, you're done.
 
+  ## Stateless usage
+
+  All credit for below documenation to [justJanne](https://git.kuschku.de/justJanne)
+
+  To use Quassel in stateless mode, where it needs to be configured through
+  environment arguments, run it with the `--config-from-environment` RUN_OPTS environment setting.
+
+  `DB_BACKEND` defines the backend used for the database, this can be `SQLite` or
+  `PostgreSQL`. In case `SQLite` is used, the database will be stored in
+  `/root/.config/quassel-irc.org/quassel-storage.sqlite`. If `PostgreSQL` is used
+  instead, these variables determine the connection details: `DB_PGSQL_USERNAME`,
+  `DB_PGSQL_PASSWORD`, `DB_PGSQL_HOSTNAME`, `DB_PGSQL_PORT`, `DB_PGSQL_DATABASE`.
+
+  `AUTH_AUTHENTICATOR` defines the backend used for authentication, this can be
+  `Database` or `LDAP`. In case `LDAP` is used, the following environment
+  variables determine the connection details: `AUTH_LDAP_HOSTNAME`,
+  `AUTH_LDAP_PORT`, `AUTH_LDAP_BIND_DN`, `AUTH_LDAP_BIND_PASSWORD`,
+  `AUTH_LDAP_BASE_DN`, `AUTH_LDAP_FILTER`, `AUTH_LDAP_UID_ATTRIBUTE`.
+
+  Minimal example with SQLite:
+
+  ```
+  docker create \
+    --name=quassel-core \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e TZ=Europe/London \
+    -e RUN_OPTS='--config-from-environment' \
+    -e DB_BACKEND=SQLite \
+    -e AUTH_AUTHENTICATOR=Database \
+    -p 4242:4242 \
+    -v <path to data>:/config \
+    --restart unless-stopped \
+    linuxserver/quassel-core
+  ```
+
+
 # changelog
 changelogs:
-  - { date: "xx.xx.19:", desc: "Make stateless operation an option, with input from one of the quassel team." }
+  - { date: "20.03.19:", desc: "Make stateless operation an option, with input from one of the quassel team." }
   - { date: "26.01.19:", desc: "Add pipeline logic and multi arch." }
   - { date: "08.01.19:", desc: "Rebase to Ubuntu Bionic and upgrade to Quassel`0.13.0` See [here.](https://quassel-irc.org/node/134)." }
   - { date: "30.07.18:", desc: "Rebase to alpine:3.8 and use buildstage." }

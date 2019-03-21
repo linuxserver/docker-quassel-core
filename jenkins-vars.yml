@@ -5,9 +5,9 @@ project_name: docker-quassel-core
 external_type: github_stable
 release_type: stable
 release_tag: latest
-ls_branch: stateless
+ls_branch: master
 repo_vars:
-  - BUILD_VERSION_ARG = 'BEETS_VERSION'
+  - BUILD_VERSION_ARG = 'QUASSEL_RELEASE'
   - EXT_GIT_BRANCH = 'master'
   - EXT_USER = 'quassel'
   - EXT_REPO = 'quassel'
@@ -18,7 +18,7 @@ repo_vars:
   - DEV_DOCKERHUB_IMAGE = 'lsiodev/quassel-core'
   - PR_DOCKERHUB_IMAGE = 'lspipepr/quassel-core'
   - DIST_IMAGE = 'alpine'
-  - MULTIARCH='false'
+  - MULTIARCH='true'
   - CI='true'
   - CI_WEB='false'
   - CI_PORT='4242'

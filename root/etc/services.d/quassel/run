@@ -2,4 +2,4 @@
 
 exec \
 	s6-setuidgid abc quasselcore \
-	--configdir /config
+	--configdir /config ${RUN_OPTS}

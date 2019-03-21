@@ -57,7 +57,9 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e RUN_OPTS=--config-from-environment `#optional` \
   -p 4242:4242 \
+  -p 113:10113 `#optional` \
   -v <path to data>:/config \
   --restart unless-stopped \
   linuxserver/quassel-core
@@ -79,10 +81,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - RUN_OPTS=--config-from-environment #optional
     volumes:
       - <path to data>:/config
     ports:
       - 4242:4242
+      - 113:10113 #optional
     restart: unless-stopped
 ```
 
@@ -93,9 +97,11 @@ Container images are configured using parameters passed at runtime (such as thos
 | Parameter | Function |
 | :----: | --- |
 | `-p 4242` | The port quassel-core listens for connections on. |
+| `-p 10113` | Optional Ident Port |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `-e RUN_OPTS=--config-from-environment` | Custom CLI options for Quassel |
 | `-v /config` | Database and quassel-core configuration storage. |
 
 ## User / Group Identifiers
@@ -122,6 +128,42 @@ A great place to host a quassel instance is a VPS, such as [DigitalOcean](https:
 Once you have the container running, fire up a quassel desktop client and connect to your new core instance using your droplets public IP address and the port you specified in your `docker run` command *default: 4242*. Create an admin user, select SQLite as your storage backend (Quassel limitation). Setup your real name and nick, then press `Save & Connect`.
 
 You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.io/index.php/irc/) `#linuxserver.io` room on Freenode. Click 'File' > 'Networks' > 'Configure Networks' > 'Add' (under Networks section, not Servers) > 'Use preset' > Select 'Freenode' and then configure your identity using the tabs in the 'Network details' section. Once connected to Freenode, click `#join` and enter `#linuxserver.io`. That's it, you're done.
+
+## Stateless usage
+
+All credit for below documenation to [justJanne](https://git.kuschku.de/justJanne)
+
+To use Quassel in stateless mode, where it needs to be configured through
+environment arguments, run it with the `--config-from-environment` RUN_OPTS environment setting.
+
+`DB_BACKEND` defines the backend used for the database, this can be `SQLite` or
+`PostgreSQL`. In case `SQLite` is used, the database will be stored in
+`/root/.config/quassel-irc.org/quassel-storage.sqlite`. If `PostgreSQL` is used
+instead, these variables determine the connection details: `DB_PGSQL_USERNAME`,
+`DB_PGSQL_PASSWORD`, `DB_PGSQL_HOSTNAME`, `DB_PGSQL_PORT`, `DB_PGSQL_DATABASE`.
+
+`AUTH_AUTHENTICATOR` defines the backend used for authentication, this can be
+`Database` or `LDAP`. In case `LDAP` is used, the following environment
+variables determine the connection details: `AUTH_LDAP_HOSTNAME`,
+`AUTH_LDAP_PORT`, `AUTH_LDAP_BIND_DN`, `AUTH_LDAP_BIND_PASSWORD`,
+`AUTH_LDAP_BASE_DN`, `AUTH_LDAP_FILTER`, `AUTH_LDAP_UID_ATTRIBUTE`.
+
+Minimal example with SQLite:
+
+```
+docker create \
+  --name=quassel-core \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e RUN_OPTS='--config-from-environment' \
+  -e DB_BACKEND=SQLite \
+  -e AUTH_AUTHENTICATOR=Database \
+  -p 4242:4242 \
+  -v <path to data>:/config \
+  --restart unless-stopped \
+  linuxserver/quassel-core
+```
 
 
 
@@ -166,7 +208,7 @@ Below are the instructions for updating containers:
 
 ## Versions
 
-* **xx.xx.19:** - Make stateless operation an option, with input from one of the quassel team.
+* **20.03.19:** - Make stateless operation an option, with input from one of the quassel team.
 * **26.01.19:** - Add pipeline logic and multi arch.
 * **08.01.19:** - Rebase to Ubuntu Bionic and upgrade to Quassel`0.13.0` See [here.](https://quassel-irc.org/node/134).
 * **30.07.18:** - Rebase to alpine:3.8 and use buildstage.
