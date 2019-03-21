@@ -56,7 +56,7 @@ RUN \
 	-DWANT_QTCLIENT=OFF \
 	-DWITH_KDE=OFF \
 	/tmp/quassel-src && \
- make -j4 && \
+ make -j2 && \
  make DESTDIR=/build/quassel install && \
  paxmark -m /build/quassel/usr/bin/quasselcore
 
