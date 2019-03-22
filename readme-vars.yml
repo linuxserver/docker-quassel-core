@@ -61,22 +61,35 @@ app_setup_block: |
 
   ## Stateless usage
 
-  All credit for below documenation to [justJanne](https://git.kuschku.de/justJanne)
-
   To use Quassel in stateless mode, where it needs to be configured through
   environment arguments, run it with the `--config-from-environment` RUN_OPTS environment setting.
 
-  `DB_BACKEND` defines the backend used for the database, this can be `SQLite` or
-  `PostgreSQL`. In case `SQLite` is used, the database will be stored in
-  `/root/.config/quassel-irc.org/quassel-storage.sqlite`. If `PostgreSQL` is used
-  instead, these variables determine the connection details: `DB_PGSQL_USERNAME`,
-  `DB_PGSQL_PASSWORD`, `DB_PGSQL_HOSTNAME`, `DB_PGSQL_PORT`, `DB_PGSQL_DATABASE`.
+  | Env | Usage |
+  | :----: | --- |
+  | DB_BACKEND | `SQLite` or `PostgreSQL` |
+  | DB_PGSQL_USERNAME | PostgreSQL User |
+  | DB_PGSQL_PASSWORD | PostgreSQL Password |
+  | DB_PGSQL_HOSTNAME | PostgreSQL Host |
+  | DB_PGSQL_PORT | PostgreSQL Port |
+  | AUTH_AUTHENTICATOR | `Database` or `LDAP` |
+  | AUTH_LDAP_HOSTNAME | LDAP Host |
+  | AUTH_LDAP_PORT | LDAP Port |
+  | AUTH_LDAP_BIND_DN | LDAP Bind Domain |
+  | AUTH_LDAP_BIND_PASSWORD | LDAP Password |
+  | AUTH_LDAP_FILTER | LDAP Authentication Filters |
+  | AUTH_LDAP_UID_ATTRIBUTE | LDAP UID |
 
-  `AUTH_AUTHENTICATOR` defines the backend used for authentication, this can be
-  `Database` or `LDAP`. In case `LDAP` is used, the following environment
-  variables determine the connection details: `AUTH_LDAP_HOSTNAME`,
-  `AUTH_LDAP_PORT`, `AUTH_LDAP_BIND_DN`, `AUTH_LDAP_BIND_PASSWORD`,
-  `AUTH_LDAP_BASE_DN`, `AUTH_LDAP_FILTER`, `AUTH_LDAP_UID_ATTRIBUTE`.
+  Additionally you have RUN_OPTS that can be used to customize pathing and behvior.
+
+  | Option | Example |
+  | :----: | --- |
+  | --strict-ident | strictly bool `--strict-ident` |
+  | --ident-daemon | strictly bool `--ident-daemon` |
+  | --ident-port | `--ident-port "10113"` |
+  | --ident-listen | `--ident-listen "::,0.0.0.0"` |
+  | --ssl-cert | `--ssl-cert /config/keys/cert.crt` |
+  | --ssl-key | `--ssl-key /config/keys/cert.key` |
+  | --require-ssl | strictly bool `--require-ssl` |
 
   Minimal example with SQLite:
 
