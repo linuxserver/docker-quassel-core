@@ -1,5 +1,4 @@
-ARG ALPINE_VER="3.9"
-FROM lsiobase/alpine:${ALPINE_VER} as build-stage
+FROM lsiobase/alpine:3.9 as build-stage
 
 # build time arguements
 ARG CXXFLAGS="\
@@ -60,7 +59,7 @@ RUN \
  make DESTDIR=/build/quassel install && \
  paxmark -m /build/quassel/usr/bin/quasselcore
 
-FROM lsiobase/alpine:${ALPINE_VER}
+FROM lsiobase/alpine:3.9
 
 # set version label
 ARG BUILD_DATE
