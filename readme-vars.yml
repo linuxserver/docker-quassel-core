@@ -15,7 +15,7 @@ project_blurb_optional_extras_enabled: false
 available_architectures:
   - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
   - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
-  - { arch: "{{ arch_armhf }}", tag: "arm32v6-latest"}
+  - { arch: "{{ arch_armhf }}", tag: "arm32v7-latest"}
 
 # development version
 development_versions: false
@@ -37,9 +37,13 @@ param_device_map: false
 cap_add_param: false
 
 # optional container parameters
-opt_param_usage_include_env: false
+opt_param_usage_include_env: true
+opt_param_env_vars:
+  - { env_var: "RUN_OPTS", env_value: "--config-from-environment", desc: "Custom CLI options for Quassel" }
 opt_param_usage_include_vols: false
-opt_param_usage_include_ports: false
+opt_param_usage_include_ports: true
+opt_param_ports:
+  - { external_port: "113", internal_port: "10113", port_desc: "Optional Ident Port" }
 opt_param_device_map: false
 opt_cap_add_param: false
 optional_block_1: false
@@ -55,8 +59,60 @@ app_setup_block: |
 
   You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.io/index.php/irc/) `#linuxserver.io` room on Freenode. Click 'File' > 'Networks' > 'Configure Networks' > 'Add' (under Networks section, not Servers) > 'Use preset' > Select 'Freenode' and then configure your identity using the tabs in the 'Network details' section. Once connected to Freenode, click `#join` and enter `#linuxserver.io`. That's it, you're done.
 
+  ## Stateless usage
+
+  To use Quassel in stateless mode, where it needs to be configured through
+  environment arguments, run it with the `--config-from-environment` RUN_OPTS environment setting.
+
+  | Env | Usage |
+  | :----: | --- |
+  | DB_BACKEND | `SQLite` or `PostgreSQL` |
+  | DB_PGSQL_USERNAME | PostgreSQL User |
+  | DB_PGSQL_PASSWORD | PostgreSQL Password |
+  | DB_PGSQL_HOSTNAME | PostgreSQL Host |
+  | DB_PGSQL_PORT | PostgreSQL Port |
+  | AUTH_AUTHENTICATOR | `Database` or `LDAP` |
+  | AUTH_LDAP_HOSTNAME | LDAP Host |
+  | AUTH_LDAP_PORT | LDAP Port |
+  | AUTH_LDAP_BIND_DN | LDAP Bind Domain |
+  | AUTH_LDAP_BIND_PASSWORD | LDAP Password |
+  | AUTH_LDAP_FILTER | LDAP Authentication Filters |
+  | AUTH_LDAP_UID_ATTRIBUTE | LDAP UID |
+
+  Additionally you have RUN_OPTS that can be used to customize pathing and behvior.
+
+  | Option | Example |
+  | :----: | --- |
+  | --strict-ident | strictly bool `--strict-ident` |
+  | --ident-daemon | strictly bool `--ident-daemon` |
+  | --ident-port | `--ident-port "10113"` |
+  | --ident-listen | `--ident-listen "::,0.0.0.0"` |
+  | --ssl-cert | `--ssl-cert /config/keys/cert.crt` |
+  | --ssl-key | `--ssl-key /config/keys/cert.key` |
+  | --require-ssl | strictly bool `--require-ssl` |
+
+  Minimal example with SQLite:
+
+  ```
+  docker create \
+    --name=quassel-core \
+    -e PUID=1000 \
+    -e PGID=1000 \
+    -e TZ=Europe/London \
+    -e RUN_OPTS='--config-from-environment' \
+    -e DB_BACKEND=SQLite \
+    -e AUTH_AUTHENTICATOR=Database \
+    -p 4242:4242 \
+    -v <path to data>:/config \
+    --restart unless-stopped \
+    linuxserver/quassel-core
+  ```
+
+
 # changelog
 changelogs:
+  - { date: "23.03.19:", desc: "Switching to new Base images, shift to arm32v7 tag." }
+  - { date: "20.03.19:", desc: "Make stateless operation an option, with input from one of the quassel team." }
   - { date: "26.01.19:", desc: "Add pipeline logic and multi arch." }
   - { date: "08.01.19:", desc: "Rebase to Ubuntu Bionic and upgrade to Quassel`0.13.0` See [here.](https://quassel-irc.org/node/134)." }
   - { date: "30.07.18:", desc: "Rebase to alpine:3.8 and use buildstage." }

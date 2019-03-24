@@ -2,20 +2,22 @@
 
 # jenkins variables
 project_name: docker-quassel-core
-external_type: na
-custom_version_command: "curl -sX GET http://ppa.launchpad.net/mamarley/quassel/ubuntu/dists/bionic/main/binary-amd64/Packages.gz | gunzip |grep -A 7 -m 1 'Package: quassel-core' | awk -F ': ' '/Version/{print $2;exit}'"
+external_type: github_stable
 release_type: stable
 release_tag: latest
 ls_branch: master
 repo_vars:
-  - BUILD_VERSION_ARG = 'QUASSEL_VERSION'
+  - BUILD_VERSION_ARG = 'QUASSEL_RELEASE'
+  - EXT_GIT_BRANCH = 'master'
+  - EXT_USER = 'quassel'
+  - EXT_REPO = 'quassel'
   - LS_USER = 'linuxserver'
   - LS_REPO = 'docker-quassel-core'
   - CONTAINER_NAME = 'quassel-core'
   - DOCKERHUB_IMAGE = 'linuxserver/quassel-core'
   - DEV_DOCKERHUB_IMAGE = 'lsiodev/quassel-core'
   - PR_DOCKERHUB_IMAGE = 'lspipepr/quassel-core'
-  - DIST_IMAGE = 'ubuntu'
+  - DIST_IMAGE = 'alpine'
   - MULTIARCH='true'
   - CI='true'
   - CI_WEB='false'

@@ -12,7 +12,6 @@ Find us at:
 * [Discord](https://discord.gg/YWrKVTn) - realtime support / chat with the community and the team.
 * [IRC](https://irc.linuxserver.io) - on freenode at `#linuxserver.io`. Our primary support channel is Discord.
 * [Blog](https://blog.linuxserver.io) - all the things you can do with our containers including How-To guides, opinions and much more!
-* [Podcast](https://anchor.fm/linuxserverio) - on hiatus. Coming back soon (late 2018).
 
 # [linuxserver/quassel-core](https://github.com/linuxserver/docker-quassel-core)
 [![](https://img.shields.io/discord/354974912613449730.svg?logo=discord&label=LSIO%20Discord&style=flat-square)](https://discord.gg/YWrKVTn)
@@ -42,7 +41,7 @@ The architectures supported by this image are:
 | :----: | --- |
 | x86-64 | amd64-latest |
 | arm64 | arm64v8-latest |
-| armhf | arm32v6-latest |
+| armhf | arm32v7-latest |
 
 
 ## Usage
@@ -57,7 +56,9 @@ docker create \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=Europe/London \
+  -e RUN_OPTS=--config-from-environment `#optional` \
   -p 4242:4242 \
+  -p 113:10113 `#optional` \
   -v <path to data>:/config \
   --restart unless-stopped \
   linuxserver/quassel-core
@@ -79,10 +80,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - RUN_OPTS=--config-from-environment #optional
     volumes:
       - <path to data>:/config
     ports:
       - 4242:4242
+      - 113:10113 #optional
     restart: unless-stopped
 ```
 
@@ -93,9 +96,11 @@ Container images are configured using parameters passed at runtime (such as thos
 | Parameter | Function |
 | :----: | --- |
 | `-p 4242` | The port quassel-core listens for connections on. |
+| `-p 10113` | Optional Ident Port |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `-e RUN_OPTS=--config-from-environment` | Custom CLI options for Quassel |
 | `-v /config` | Database and quassel-core configuration storage. |
 
 ## User / Group Identifiers
@@ -122,6 +127,55 @@ A great place to host a quassel instance is a VPS, such as [DigitalOcean](https:
 Once you have the container running, fire up a quassel desktop client and connect to your new core instance using your droplets public IP address and the port you specified in your `docker run` command *default: 4242*. Create an admin user, select SQLite as your storage backend (Quassel limitation). Setup your real name and nick, then press `Save & Connect`.
 
 You're now connected to IRC. Let's add you to our [IRC](http://www.linuxserver.io/index.php/irc/) `#linuxserver.io` room on Freenode. Click 'File' > 'Networks' > 'Configure Networks' > 'Add' (under Networks section, not Servers) > 'Use preset' > Select 'Freenode' and then configure your identity using the tabs in the 'Network details' section. Once connected to Freenode, click `#join` and enter `#linuxserver.io`. That's it, you're done.
+
+## Stateless usage
+
+To use Quassel in stateless mode, where it needs to be configured through
+environment arguments, run it with the `--config-from-environment` RUN_OPTS environment setting.
+
+| Env | Usage |
+| :----: | --- |
+| DB_BACKEND | `SQLite` or `PostgreSQL` |
+| DB_PGSQL_USERNAME | PostgreSQL User |
+| DB_PGSQL_PASSWORD | PostgreSQL Password |
+| DB_PGSQL_HOSTNAME | PostgreSQL Host |
+| DB_PGSQL_PORT | PostgreSQL Port |
+| AUTH_AUTHENTICATOR | `Database` or `LDAP` |
+| AUTH_LDAP_HOSTNAME | LDAP Host |
+| AUTH_LDAP_PORT | LDAP Port |
+| AUTH_LDAP_BIND_DN | LDAP Bind Domain |
+| AUTH_LDAP_BIND_PASSWORD | LDAP Password |
+| AUTH_LDAP_FILTER | LDAP Authentication Filters |
+| AUTH_LDAP_UID_ATTRIBUTE | LDAP UID |
+
+Additionally you have RUN_OPTS that can be used to customize pathing and behvior.
+
+| Option | Example |
+| :----: | --- |
+| --strict-ident | strictly bool `--strict-ident` |
+| --ident-daemon | strictly bool `--ident-daemon` |
+| --ident-port | `--ident-port "10113"` |
+| --ident-listen | `--ident-listen "::,0.0.0.0"` |
+| --ssl-cert | `--ssl-cert /config/keys/cert.crt` |
+| --ssl-key | `--ssl-key /config/keys/cert.key` |
+| --require-ssl | strictly bool `--require-ssl` |
+
+Minimal example with SQLite:
+
+```
+docker create \
+  --name=quassel-core \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Europe/London \
+  -e RUN_OPTS='--config-from-environment' \
+  -e DB_BACKEND=SQLite \
+  -e AUTH_AUTHENTICATOR=Database \
+  -p 4242:4242 \
+  -v <path to data>:/config \
+  --restart unless-stopped \
+  linuxserver/quassel-core
+```
 
 
 
@@ -166,6 +220,8 @@ Below are the instructions for updating containers:
 
 ## Versions
 
+* **23.03.19:** - Switching to new Base images, shift to arm32v7 tag.
+* **20.03.19:** - Make stateless operation an option, with input from one of the quassel team.
 * **26.01.19:** - Add pipeline logic and multi arch.
 * **08.01.19:** - Rebase to Ubuntu Bionic and upgrade to Quassel`0.13.0` See [here.](https://quassel-irc.org/node/134).
 * **30.07.18:** - Rebase to alpine:3.8 and use buildstage.

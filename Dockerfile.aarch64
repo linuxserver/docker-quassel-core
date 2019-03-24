@@ -1,46 +1,91 @@
-FROM lsiobase/ubuntu.arm64:bionic
+FROM lsiobase/alpine:arm64v8-3.9 as build-stage
 
-# Add qemu to build on x86_64 systems
-COPY qemu-aarch64-static /usr/bin
+# build time arguements
+ARG CXXFLAGS="\
+	-D_FORTIFY_SOURCE=2 \
+	-Wp,-D_GLIBCXX_ASSERTIONS \
+	-fstack-protector-strong \
+	-fPIE -pie -Wl,-z,noexecstack \
+	-Wl,-z,relro -Wl,-z,now"
+ARG QUASSEL_RELEASE
+# install build packages
+RUN \
+ apk add --no-cache \
+	cmake \
+	curl \
+	dbus-dev \
+	g++ \
+	gcc \
+	icu-dev \
+	icu-libs \
+	jq \
+	openssl-dev \
+	openldap-dev \
+	make \
+	paxmark \
+	qt5-qtbase-dev \
+	qt5-qtscript-dev \
+	qt5-qtbase-postgresql \
+	qt5-qtbase-sqlite
+
+# fetch source
+RUN \
+ mkdir -p \
+	/tmp/quassel-src/build && \
+ if [ -z ${QUASSEL_RELEASE+x} ]; then \
+	QUASSEL_RELEASE=$(curl -sX GET "https://api.github.com/repos/quassel/quassel/releases/latest" \
+	| jq -r .tag_name); \
+ fi && \
+ curl -o \
+ /tmp/quassel.tar.gz -L \
+	"https://github.com/quassel/quassel/archive/${QUASSEL_RELEASE}.tar.gz" && \
+ tar xf \
+ /tmp/quassel.tar.gz -C \
+	/tmp/quassel-src --strip-components=1
+
+# build package
+RUN \
+ cd /tmp/quassel-src/build && \
+ cmake \
+	-DCMAKE_BUILD_TYPE="Release" \
+	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DUSE_QT5=ON \
+	-DWANT_CORE=ON \
+	-DWANT_MONO=OFF \
+	-DWANT_QTCLIENT=OFF \
+	-DWITH_KDE=OFF \
+	/tmp/quassel-src && \
+ make -j2 && \
+ make DESTDIR=/build/quassel install
+
+FROM lsiobase/alpine:arm64v8-3.9
 
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-ARG QUASSEL_VERSION
+ARG QUASSEL_RELEASE
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="sparklyballs & chbmb"
 
 # set environment variables
-ARG DEBIAN_FRONTEND="noninteractive"
 ENV HOME /config
 
+# install runtime packages
 RUN \
- apt-get update && \
- apt-get install -y gnupg libqt5sql5-psql && \
- apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 26F4EF8440618B66 && \
- echo "**** add repository ****" && \
- echo "deb http://ppa.launchpad.net/mamarley/quassel/ubuntu bionic main" > \
-        /etc/apt/sources.list.d/quassel.list && \
- echo "deb-src http://ppa.launchpad.net/mamarley/quassel/ubuntu bionic main" >> \
-        /etc/apt/sources.list.d/quassel.list && \
- echo "**** install packages ****" && \
- if [ -z ${QUASSEL_VERSION+x} ]; then \
-	QUASSEL="quassel-core"; \
- else \
-	QUASSEL="quassel-core=${QUASSEL_VERSION}"; \
- fi && \
- apt-get update && \
- apt-get install -y ${QUASSEL} && \
- echo "**** cleanup ****" && \
- apt-get clean && \
- rm -rf \
-	/tmp/* \
-	/var/lib/apt/lists/* \
-	/var/tmp/*
+ apk add --no-cache \
+	icu-libs \
+	openssl \
+	qt5-qtbase \
+	qt5-qtbase-postgresql \
+	qt5-qtbase-sqlite \
+	qt5-qtscript
+
+# copy artifacts build stage
+COPY --from=build-stage /build/quassel/usr/bin/ /usr/bin/
 
 # add local files
 COPY root/ /
 
 # ports and volumes
-EXPOSE 4242
 VOLUME /config
+EXPOSE 4242 10113
