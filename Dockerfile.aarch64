@@ -61,9 +61,6 @@ RUN \
 
 FROM lsiobase/alpine.arm64:${ALPINE_VER}
 
-# Add qemu to build on x86_64 systems
-COPY qemu-aarch64-static /usr/bin
-
 # set version label
 ARG BUILD_DATE
 ARG VERSION
