@@ -41,7 +41,7 @@ libmount-2.33.2-r0
 libpciaccess-0.14-r0
 libpcre2-16-10.33-r0
 libpng-1.6.37-r1
-libpq-11.4-r0
+libpq-11.5-r0
 libsasl-2.1.27-r3
 libsm-1.2.3-r0
 libssl1.1-1.1.1c-r0
@@ -69,8 +69,8 @@ mesa-gbm-19.0.6-r0
 mesa-gl-19.0.6-r0
 mesa-glapi-19.0.6-r0
 mtdev-1.1.5-r2
-musl-1.1.22-r2
-musl-utils-1.1.22-r2
+musl-1.1.22-r3
+musl-utils-1.1.22-r3
 ncurses-libs-6.1_p20190518-r0
 ncurses-terminfo-6.1_p20190518-r0
 ncurses-terminfo-base-6.1_p20190518-r0
