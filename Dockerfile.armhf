@@ -1,4 +1,4 @@
-FROM lsiobase/alpine:arm32v7-3.10 as build-stage
+FROM lsiobase/alpine:arm32v7-3.11 as build-stage
 
 # build time arguements
 ARG CXXFLAGS="\
@@ -59,7 +59,7 @@ RUN \
  make DESTDIR=/build/quassel install && \
  paxmark -m /build/quassel/usr/bin/quasselcore
 
-FROM lsiobase/alpine:arm32v7-3.10
+FROM lsiobase/alpine:arm32v7-3.11
 
 # set version label
 ARG BUILD_DATE
