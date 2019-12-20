@@ -1,4 +1,4 @@
-FROM lsiobase/alpine:arm64v8-3.10 as build-stage
+FROM lsiobase/alpine:arm64v8-3.11 as build-stage
 
 # build time arguements
 ARG CXXFLAGS="\
@@ -58,7 +58,7 @@ RUN \
  make -j2 && \
  make DESTDIR=/build/quassel install
 
-FROM lsiobase/alpine:arm64v8-3.10
+FROM lsiobase/alpine:arm64v8-3.11
 
 # set version label
 ARG BUILD_DATE
