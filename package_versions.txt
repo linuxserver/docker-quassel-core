@@ -39,7 +39,7 @@ libjpeg-turbo-2.0.3-r0
 libldap-2.4.48-r1
 libmount-2.34-r1
 libpciaccess-0.16-r0
-libpcre2-16-10.34-r0
+libpcre2-16-10.34-r1
 libpng-1.6.37-r1
 libpq-12.1-r0
 libsasl-2.1.27-r4
