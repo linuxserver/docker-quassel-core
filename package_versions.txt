@@ -35,7 +35,7 @@ libgcc-9.2.0-r3
 libice-1.0.10-r0
 libinput-libs-1.14.3-r0
 libintl-0.20.1-r2
-libjpeg-turbo-2.0.3-r0
+libjpeg-turbo-2.0.4-r0
 libldap-2.4.48-r1
 libmount-2.34-r1
 libpciaccess-0.16-r0
