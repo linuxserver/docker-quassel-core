@@ -71,8 +71,8 @@ mesa-glapi-19.2.7-r0
 mtdev-1.1.5-r2
 musl-1.1.24-r2
 musl-utils-1.1.24-r2
-ncurses-libs-6.1_p20200118-r2
-ncurses-terminfo-base-6.1_p20200118-r2
+ncurses-libs-6.1_p20200118-r3
+ncurses-terminfo-base-6.1_p20200118-r3
 nettle-3.5.1-r0
 openssl-1.1.1d-r3
 p11-kit-0.23.18.1-r0
