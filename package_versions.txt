@@ -27,7 +27,7 @@ libblkid-2.34-r1
 libbsd-0.10.0-r0
 libbz2-1.0.8-r1
 libc-utils-0.7.2-r0
-libcrypto1.1-1.1.1d-r3
+libcrypto1.1-1.1.1g-r0
 libdrm-2.4.100-r0
 libevdev-1.8.0-r0
 libffi-3.2.1-r6
@@ -44,7 +44,7 @@ libpng-1.6.37-r1
 libpq-12.2-r0
 libsasl-2.1.27-r5
 libsm-1.2.3-r0
-libssl1.1-1.1.1d-r3
+libssl1.1-1.1.1g-r0
 libstdc++-9.2.0-r4
 libtasn1-4.15.0-r0
 libtls-standalone-2.9.1-r0
@@ -74,7 +74,7 @@ musl-utils-1.1.24-r2
 ncurses-libs-6.1_p20200118-r3
 ncurses-terminfo-base-6.1_p20200118-r3
 nettle-3.5.1-r0
-openssl-1.1.1d-r3
+openssl-1.1.1g-r0
 p11-kit-0.23.18.1-r0
 pcre-8.43-r0
 qt5-qtbase-5.12.5-r0
