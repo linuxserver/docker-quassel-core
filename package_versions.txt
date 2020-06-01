@@ -42,6 +42,7 @@ libpciaccess-0.16-r0
 libpcre2-16-10.34-r1
 libpng-1.6.37-r1
 libpq-12.2-r0
+libproc-3.3.16-r0
 libsasl-2.1.27-r5
 libsm-1.2.3-r0
 libssl1.1-1.1.1g-r0
@@ -77,6 +78,7 @@ nettle-3.5.1-r0
 openssl-1.1.1g-r0
 p11-kit-0.23.18.1-r0
 pcre-8.43-r0
+procps-3.3.16-r0
 qt5-qtbase-5.12.5-r0
 qt5-qtbase-postgresql-5.12.5-r0
 qt5-qtbase-sqlite-5.12.5-r0
