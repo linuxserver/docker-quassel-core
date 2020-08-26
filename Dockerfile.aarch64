@@ -26,7 +26,8 @@ RUN \
 	qt5-qtbase-dev \
 	qt5-qtscript-dev \
 	qt5-qtbase-postgresql \
-	qt5-qtbase-sqlite
+	qt5-qtbase-sqlite \
+	qca-dev
 
 # fetch source
 RUN \
@@ -78,7 +79,8 @@ RUN \
 	qt5-qtbase \
 	qt5-qtbase-postgresql \
 	qt5-qtbase-sqlite \
-	qt5-qtscript
+	qt5-qtscript \
+	libqca
 
 # copy artifacts build stage
 COPY --from=build-stage /build/quassel/usr/bin/ /usr/bin/
