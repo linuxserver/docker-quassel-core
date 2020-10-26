@@ -13,7 +13,7 @@ dbus-libs-1.12.16-r3
 eudev-libs-3.2.9-r1
 expat-2.2.9-r1
 fontconfig-2.13.1-r2
-freetype-2.10.1-r0
+freetype-2.10.1-r1
 glib-2.62.6-r0
 gmp-6.1.2-r1
 gnutls-3.6.15-r0
@@ -89,7 +89,7 @@ scanelf-1.2.4-r0
 shadow-4.7-r1
 sqlite-libs-3.30.1-r2
 ssl_client-1.31.1-r9
-tzdata-2020a-r0
+tzdata-2020c-r0
 wayland-libs-client-1.17.0-r0
 wayland-libs-server-1.17.0-r0
 xcb-util-0.4.0-r1
