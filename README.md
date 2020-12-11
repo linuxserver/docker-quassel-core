@@ -280,6 +280,100 @@ docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
 Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64`.
 
+Posgresql can offer improved reliability over sqlite.
+
+# quassel-core
+
+Setup quassel-core with docker.
+
+## Database setup
+
+Start database first
+
+  docker-compose up -d postgres
+
+Exec into it or use psql/other client to connect from outside
+
+  docker exec -it postgres bash
+
+Get into psql
+
+  psql -U postgres
+
+Create a new user and databse
+
+  CREATE DATABASE quassel;
+  CREATE USER quassel WITH ENCRYPTED PASSWORD 'quassel';
+  GRANT ALL PRIVILEGES ON DATABASE quassel TO quassel;
+
+When done, exit out of psql and the container.
+
+  exit;
+
+## Quassel-core setup
+
+`docker-compose.yml`
+
+```yaml
+version: "2.1"
+services:
+  quassel-core:
+    image: ghcr.io/linuxserver/quassel-core
+    container_name: quassel-core
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+      - RUN_OPTS=--config-from-environment
+      - DB_BACKEND=PostgreSQL
+      - DB_PGSQL_USERNAME=quassel
+      - DB_PGSQL_PASSWORD=quassel
+      - DB_PGSQL_PORT=5432
+      - DB_PGSQL_HOSTNAME=postgres
+      - DB_PGSQL_DATABASE=quassel
+      - AUTH_AUTHENTICATOR=Database
+    volumes:
+      - /home/myuser/docker/irc-quassel/config:/config
+    ports:
+      - 4242:4242
+    restart: unless-stopped
+    depends_on:
+      - "postgres"
+  postgres:
+    container_name: postgres
+    image: postgres:11.10
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - <path to data>:/var/lib/postgresql/data
+```
+
+Change relevant stuff like path to quassel config dir and set some other postgres credentials that match what you set before.
+
+The first time you run this, MAKE SURE that the line `- RUN_OPTS` is commented out!!
+
+Start the container
+
+  docker-compose up -d quassel-core
+
+And now you can connect your client and it will figure out its the first time so setup is neccessary.
+
+1. Accept certs 
+2. Set username and password for admin user
+3. Storage backend: Postgres (point to correct creds from docker-compose. Hostname = postgres)
+4. After that it will initialize the rest and setup.
+5. Stop the container - `docker-compose stop quassel-core`
+6. Uncomment the `- RUN_OPTS` line
+7. Start the container again `docker-compose up -d quassel-core`
+8. Connect from client with login you set before.
+9. Profit??
+
+
+
+
+
 ## Versions
 
 * **19.12.19:** - Rebasing to alpine 3.11.
