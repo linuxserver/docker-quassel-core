@@ -7,7 +7,7 @@ busybox-1.31.1-r9
 ca-certificates-20191127-r2
 ca-certificates-cacert-20191127-r2
 coreutils-8.31-r0
-cups-libs-2.2.12-r1
+cups-libs-2.2.12-r2
 db-5.3.28-r1
 dbus-libs-1.12.16-r3
 eudev-libs-3.2.9-r1
@@ -36,7 +36,7 @@ libice-1.0.10-r0
 libinput-libs-1.14.3-r0
 libintl-0.20.1-r2
 libjpeg-turbo-2.0.4-r1
-libldap-2.4.48-r2
+libldap-2.4.48-r3
 libmount-2.34-r1
 libpciaccess-0.16-r0
 libpcre2-16-10.34-r1
@@ -76,8 +76,8 @@ ncurses-libs-6.1_p20200118-r4
 ncurses-terminfo-base-6.1_p20200118-r4
 nettle-3.5.1-r0
 openssl-1.1.1g-r0
-p11-kit-0.23.18.1-r0
-pcre-8.43-r0
+p11-kit-0.23.18.1-r1
+pcre-8.43-r1
 procps-3.3.16-r0
 qt5-qtbase-5.12.5-r0
 qt5-qtbase-postgresql-5.12.5-r0
