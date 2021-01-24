@@ -43,6 +43,7 @@ libpcre2-16-10.34-r1
 libpng-1.6.37-r1
 libpq-12.5-r0
 libproc-3.3.16-r0
+libqca-2.2.1-r0
 libsasl-2.1.27-r5
 libsm-1.2.3-r0
 libssl1.1-1.1.1i-r0
