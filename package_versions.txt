@@ -41,7 +41,7 @@ libmount-2.34-r1
 libpciaccess-0.16-r0
 libpcre2-16-10.34-r1
 libpng-1.6.37-r1
-libpq-12.7-r0
+libpq-12.8-r0
 libproc-3.3.16-r0
 libqca-2.2.1-r0
 libsasl-2.1.27-r5
