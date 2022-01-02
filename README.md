@@ -284,6 +284,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **01.01.22:** - Rebase to alpine 3.14. Add boost-dev as build dep.
 * **07.08.21:** - Fixing incorrect database password variable operator.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.

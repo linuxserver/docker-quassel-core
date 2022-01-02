@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-alpine:3.11 as build-stage
+FROM ghcr.io/linuxserver/baseimage-alpine:3.14 as build-stage
 
 # build time arguements
 ARG CXXFLAGS="\
@@ -11,6 +11,7 @@ ARG QUASSEL_RELEASE
 # install build packages
 RUN \
  apk add --no-cache \
+	boost-dev \
 	cmake \
 	curl \
 	dbus-dev \
@@ -60,7 +61,7 @@ RUN \
  make DESTDIR=/build/quassel install && \
  paxmark -m /build/quassel/usr/bin/quasselcore
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.11
+FROM ghcr.io/linuxserver/baseimage-alpine:3.14
 
 # set version label
 ARG BUILD_DATE
