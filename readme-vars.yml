@@ -111,6 +111,7 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "03.01.22:", desc: "Rebase to alpine 3.15. Add new build deps and apply other fixes for 0.14." }
   - { date: "07.08.21:", desc: "Fixing incorrect database password variable operator." }
   - { date: "19.12.19:", desc: "Rebasing to alpine 3.11." }
   - { date: "28.06.19:", desc: "Rebasing to alpine 3.10." }
