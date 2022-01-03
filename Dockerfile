@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-alpine:3.11 as build-stage
+FROM ghcr.io/linuxserver/baseimage-alpine:3.15 as build-stage
 
 # build time arguements
 ARG CXXFLAGS="\
@@ -11,6 +11,7 @@ ARG QUASSEL_RELEASE
 # install build packages
 RUN \
  apk add --no-cache \
+	boost-dev \
 	cmake \
 	curl \
 	dbus-dev \
@@ -22,12 +23,12 @@ RUN \
 	openssl-dev \
 	openldap-dev \
 	make \
-	paxmark \
 	qt5-qtbase-dev \
 	qt5-qtscript-dev \
 	qt5-qtbase-postgresql \
 	qt5-qtbase-sqlite \
-	qca-dev
+	qca-dev \
+	zlib-dev
 
 # fetch source
 RUN \
@@ -50,7 +51,6 @@ RUN \
  cmake \
 	-DCMAKE_BUILD_TYPE="Release" \
 	-DCMAKE_INSTALL_PREFIX=/usr \
-	-DUSE_QT5=ON \
 	-DWANT_CORE=ON \
 	-DWANT_MONO=OFF \
 	-DWANT_QTCLIENT=OFF \
@@ -58,9 +58,9 @@ RUN \
 	/tmp/quassel-src && \
  make -j2 && \
  make DESTDIR=/build/quassel install && \
- paxmark -m /build/quassel/usr/bin/quasselcore
+ mv /build/quassel/usr/lib64 /build/quassel/usr/lib
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.11
+FROM ghcr.io/linuxserver/baseimage-alpine:3.15
 
 # set version label
 ARG BUILD_DATE
@@ -81,10 +81,11 @@ RUN \
 	qt5-qtbase-postgresql \
 	qt5-qtbase-sqlite \
 	qt5-qtscript \
-	libqca
+	libqca \
+	openldap
 
 # copy artifacts build stage
-COPY --from=build-stage /build/quassel/usr/bin/ /usr/bin/
+COPY --from=build-stage /build/quassel/usr/ /usr/
 
 # add local files
 COPY root/ /
