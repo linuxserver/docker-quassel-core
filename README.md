@@ -79,6 +79,7 @@ environment arguments, run it with the `--config-from-environment` RUN_OPTS envi
 | :----: | --- |
 | DB_BACKEND | `SQLite` or `PostgreSQL` |
 | DB_PGSQL_USERNAME | PostgreSQL User |
+| DB_PGSQL_DATABASE | PostgresQL Database |
 | DB_PGSQL_PASSWORD | PostgreSQL Password |
 | DB_PGSQL_HOSTNAME | PostgreSQL Host |
 | DB_PGSQL_PORT | PostgreSQL Port |
