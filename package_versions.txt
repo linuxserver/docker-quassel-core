@@ -11,7 +11,7 @@ coreutils-9.0-r2
 cups-libs-2.3.3-r5
 dbus-libs-1.12.20-r4
 eudev-libs-3.2.11_pre1-r0
-expat-2.4.3-r0
+expat-2.4.4-r0
 fontconfig-2.13.1-r4
 freetype-2.11.0-r0
 gdbm-1.22-r0
@@ -24,7 +24,7 @@ hicolor-icon-theme-0.17-r1
 icu-libs-69.1-r1
 libacl-2.2.53-r0
 libattr-2.5.1-r1
-libblkid-2.37.2-r1
+libblkid-2.37.3-r0
 libbsd-0.11.3-r1
 libbz2-1.0.8-r1
 libc-utils-0.7.2-r3
@@ -40,7 +40,7 @@ libjpeg-turbo-2.1.2-r0
 libldap-2.6.0-r0
 libltdl-2.4.6-r7
 libmd-1.0.3-r0
-libmount-2.37.2-r1
+libmount-2.37.3-r0
 libpciaccess-0.16-r0
 libpcre2-16-10.39-r0
 libpng-1.6.37-r1
@@ -54,7 +54,7 @@ libssl1.1-1.1.1l-r8
 libstdc++-10.3.1_git20211027-r0
 libtasn1-4.18.0-r0
 libunistring-0.9.10-r1
-libuuid-2.37.2-r1
+libuuid-2.37.3-r0
 libx11-1.7.2-r0
 libxau-1.0.9-r0
 libxcb-1.14-r2
