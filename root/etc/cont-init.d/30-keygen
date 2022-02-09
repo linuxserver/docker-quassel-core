@@ -1,7 +1,8 @@
 #!/usr/bin/with-contenv bash
 
 # generate key
-if [ ! -f /config/quasselCert.pem ]; then openssl req -x509 -nodes -days 365 \
+if [ ! -f /config/quasselCert.pem ] || ! openssl x509 -noout -checkend 2592000 \
+-in /config/quasselCert.pem ; then openssl req -x509 -nodes -days 365 \
 -newkey rsa:4096 -keyout /config/quasselCert.pem -out /config/quasselCert.pem \
 -subj "/CN=Quassel-core" ; fi
 
