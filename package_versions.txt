@@ -82,7 +82,7 @@ ncurses-libs-6.3_p20211120-r0
 ncurses-terminfo-base-6.3_p20211120-r0
 nettle-3.7.3-r0
 openldap-2.6.0-r0
-openssl-1.1.1l-r8
+openssl-1.1.1n-r0
 p11-kit-0.24.0-r1
 pcre-8.45-r1
 pkgconf-1.8.0-r0
