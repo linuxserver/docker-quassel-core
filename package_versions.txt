@@ -13,7 +13,7 @@ dbus-libs-1.12.20-r4
 eudev-libs-3.2.11_pre1-r0
 expat-2.4.7-r0
 fontconfig-2.13.1-r4
-freetype-2.11.1-r0
+freetype-2.11.1-r1
 gdbm-1.22-r0
 glib-2.70.1-r0
 gmp-6.2.1-r1
@@ -118,5 +118,5 @@ xprop-1.2.5-r0
 xset-1.2.4-r0
 xz-5.2.5-r1
 xz-libs-5.2.5-r1
-zlib-1.2.12-r0
+zlib-1.2.12-r1
 zstd-libs-1.5.0-r0
