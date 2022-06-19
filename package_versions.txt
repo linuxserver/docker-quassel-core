@@ -42,9 +42,9 @@ libltdl-2.4.6-r7
 libmd-1.0.3-r0
 libmount-2.37.4-r0
 libpciaccess-0.16-r0
-libpcre2-16-10.39-r0
+libpcre2-16-10.40-r0
 libpng-1.6.37-r1
-libpq-14.3-r0
+libpq-14.4-r0
 libproc-3.3.17-r0
 libqca-2.3.4-r0
 libretls-3.3.4-r3
