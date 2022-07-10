@@ -28,7 +28,7 @@ libblkid-2.37.4-r0
 libbsd-0.11.3-r1
 libbz2-1.0.8-r1
 libc-utils-0.7.2-r3
-libcrypto1.1-1.1.1o-r0
+libcrypto1.1-1.1.1p-r0
 libdrm-2.4.109-r0
 libevdev-1.12.0-r0
 libffi-3.4.2-r1
@@ -50,7 +50,7 @@ libqca-2.3.4-r0
 libretls-3.3.4-r3
 libsasl-2.1.28-r0
 libsm-1.2.3-r0
-libssl1.1-1.1.1o-r0
+libssl1.1-1.1.1p-r0
 libstdc++-10.3.1_git20211027-r0
 libtasn1-4.18.0-r0
 libunistring-0.9.10-r1
@@ -82,7 +82,7 @@ ncurses-libs-6.3_p20211120-r0
 ncurses-terminfo-base-6.3_p20211120-r0
 nettle-3.7.3-r0
 openldap-2.6.2-r0
-openssl-1.1.1p-r0
+openssl-1.1.1q-r0
 p11-kit-0.24.0-r1
 pcre-8.45-r1
 pkgconf-1.8.0-r0
