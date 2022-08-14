@@ -121,5 +121,5 @@ xprop-1.2.5-r0
 xset-1.2.4-r0
 xz-5.2.5-r1
 xz-libs-5.2.5-r1
-zlib-1.2.12-r1
+zlib-1.2.12-r2
 zstd-libs-1.5.0-r0
