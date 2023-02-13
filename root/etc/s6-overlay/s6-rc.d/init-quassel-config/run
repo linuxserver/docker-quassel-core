@@ -10,4 +10,4 @@ fi
 
 # permissions
 lsiown -R abc:abc \
-	/config
+    /config
