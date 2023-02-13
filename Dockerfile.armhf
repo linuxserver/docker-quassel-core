@@ -75,6 +75,7 @@ ENV HOME /config
 RUN \
   apk add --no-cache \
     icu-libs \
+    openssl \
     qt5-qtbase \
     qt5-qtbase-postgresql \
     qt5-qtbase-sqlite \
