@@ -57,8 +57,7 @@ RUN \
     -DWITH_KDE=OFF \
     /tmp/quassel-src && \
   make -j2 && \
-  make DESTDIR=/build/quassel install && \
-  mv /build/quassel/usr/lib64 /build/quassel/usr/lib
+  make DESTDIR=/build/quassel install
 
 FROM ghcr.io/linuxserver/baseimage-alpine:3.17
 
