@@ -1,0 +1,13 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+# generate key
+if [[ ! -f /config/quasselCert.pem ]]; then 
+    openssl req -x509 -nodes -days 3650 \
+    -newkey rsa:4096 -keyout /config/quasselCert.pem -out /config/quasselCert.pem \
+    -subj "/CN=Quassel-core"
+fi
+
+# permissions
+lsiown -R abc:abc \
+    /config
