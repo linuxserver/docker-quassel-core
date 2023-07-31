@@ -17,7 +17,7 @@ cairo                   1.17.6-r3              apk
 cairo-gobject           1.17.6-r3              apk     
 coreutils               9.1-r0                 apk     
 cups-libs               2.4.2-r3               apk     
-curl                    8.2.0-r1               apk     
+curl                    8.2.1-r0               apk     
 dbus-libs               1.14.8-r0              apk     
 eudev-libs              3.2.11-r4              apk     
 file                    5.43-r0                apk     
@@ -47,7 +47,7 @@ libbsd                  0.11.7-r0              apk
 libbz2                  1.0.8-r4               apk     
 libc-utils              0.7.2-r3               apk     
 libcrypto3              3.0.9-r3               apk     
-libcurl                 8.2.0-r1               apk     
+libcurl                 8.2.1-r0               apk     
 libdrm                  2.4.114-r0             apk     
 libepoxy                1.5.10-r0              apk     
 libevdev                1.13.0-r0              apk     
