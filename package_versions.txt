@@ -2,7 +2,7 @@ NAME                    VERSION                TYPE
 alpine-baselayout       3.4.0-r0               apk     
 alpine-baselayout-data  3.4.0-r0               apk     
 alpine-keys             2.4-r1                 apk     
-alpine-release          3.17.4-r0              apk     
+alpine-release          3.17.5-r0              apk     
 apk-tools               2.12.10-r1             apk     
 at-spi2-core            2.46.0-r0              apk     
 avahi-libs              0.8-r6                 apk     
@@ -65,7 +65,7 @@ libmd                   1.0.4-r0               apk
 libmount                2.38.1-r1              apk     
 libpciaccess            0.17-r0                apk     
 libpcre2-16             10.42-r0               apk     
-libpng                  1.6.38-r0              apk     
+libpng                  1.6.39-r0              apk     
 libpq                   15.3-r0                apk     
 libproc                 3.3.17-r2              apk     
 libqca                  2.3.4-r2               apk     
