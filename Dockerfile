@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.17 as build-stage
+FROM ghcr.io/linuxserver/baseimage-alpine:3.18 as build-stage
 
 # build time arguements
 ARG CXXFLAGS="\
@@ -14,15 +14,12 @@ ARG QUASSEL_RELEASE
 RUN \
   apk add --no-cache \
     boost-dev \
+    build-base \
     cmake \
     dbus-dev \
-    g++ \
-    gcc \
     icu-dev \
-    icu-libs \
     openssl-dev \
     openldap-dev \
-    make \
     qt5-qtbase-dev \
     qt5-qtscript-dev \
     qt5-qtbase-postgresql \
@@ -59,7 +56,7 @@ RUN \
   make -j2 && \
   make DESTDIR=/build/quassel install
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.17
+FROM ghcr.io/linuxserver/baseimage-alpine:3.18
 
 # set version label
 ARG BUILD_DATE

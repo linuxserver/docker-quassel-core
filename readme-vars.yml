@@ -73,7 +73,7 @@ app_setup_block: |
   | AUTH_LDAP_FILTER | LDAP Authentication Filters |
   | AUTH_LDAP_UID_ATTRIBUTE | LDAP UID |
 
-  Additionally you have RUN_OPTS that can be used to customize pathing and behvior.
+  Additionally you have RUN_OPTS that can be used to customize pathing and behavior.
 
   | Option | Example |
   | :----: | --- |
@@ -103,6 +103,7 @@ app_setup_block: |
   ```
 # changelog
 changelogs:
+  - {date: "10.11.23:", desc: "Rebase to Alpine 3.18."}
   - {date: "03.07.23:", desc: "Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)"}
   - {date: "13.02.23:", desc: "Rebase to Alpine 3.17, migrate to s6v3."}
   - {date: "03.01.22:", desc: "Rebase to alpine 3.15. Add new build deps and apply other fixes for 0.14."}
