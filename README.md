@@ -89,7 +89,7 @@ environment arguments, run it with the `--config-from-environment` RUN_OPTS envi
 | AUTH_LDAP_FILTER | LDAP Authentication Filters |
 | AUTH_LDAP_UID_ATTRIBUTE | LDAP UID |
 
-Additionally you have RUN_OPTS that can be used to customize pathing and behvior.
+Additionally you have RUN_OPTS that can be used to customize pathing and behavior.
 
 | Option | Example |
 | :----: | --- |
@@ -350,6 +350,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **10.11.23:** - Rebase to Alpine 3.18.
 * **03.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
 * **03.01.22:** - Rebase to alpine 3.15. Add new build deps and apply other fixes for 0.14.
