@@ -16,7 +16,7 @@ cairo                   1.17.8-r1               apk
 cairo-gobject           1.17.8-r1               apk   
 coreutils               9.3-r1                  apk   
 cups-libs               2.4.7-r0                apk   
-curl                    8.4.0-r0                apk   
+curl                    8.5.0-r0                apk   
 dbus-libs               1.14.8-r0               apk   
 eudev-libs              3.2.11-r8               apk   
 file                    5.45-r0                 apk   
@@ -36,7 +36,7 @@ hicolor-icon-theme      0.17-r2                 apk
 hwdata-pci              0.370-r0                apk   
 icu-data-full           73.2-r2                 apk   
 icu-libs                73.2-r2                 apk   
-jq                      1.6-r3                  apk   
+jq                      1.6-r4                  apk   
 libacl                  2.3.1-r3                apk   
 libatk-1.0              2.48.3-r0               apk   
 libatk-bridge-2.0       2.48.3-r0               apk   
@@ -46,7 +46,7 @@ libbsd                  0.11.7-r1               apk
 libbz2                  1.0.8-r5                apk   
 libc-utils              0.7.2-r5                apk   
 libcrypto3              3.1.4-r1                apk   
-libcurl                 8.4.0-r0                apk   
+libcurl                 8.5.0-r0                apk   
 libdrm                  2.4.115-r4              apk   
 libepoxy                1.5.10-r1               apk   
 libevdev                1.13.1-r0               apk   
