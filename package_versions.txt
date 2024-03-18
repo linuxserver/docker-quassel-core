@@ -50,7 +50,7 @@ libcurl                 8.5.0-r0                apk
 libdrm                  2.4.115-r4              apk     
 libepoxy                1.5.10-r1               apk     
 libevdev                1.13.1-r0               apk     
-libexpat                2.6.0-r0                apk     
+libexpat                2.6.2-r0                apk     
 libffi                  3.4.4-r2                apk     
 libgcc                  12.2.1_git20220924-r10  apk     
 libice                  1.1.1-r2                apk     
