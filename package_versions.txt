@@ -14,6 +14,7 @@ ca-certificates         20240226-r0             apk
 ca-certificates-bundle  20240226-r0             apk     
 cairo                   1.17.8-r1               apk     
 cairo-gobject           1.17.8-r1               apk     
+catatonit               0.1.7-r0                apk     
 coreutils               9.3-r2                  apk     
 cups-libs               2.4.7-r0                apk     
 curl                    8.5.0-r0                apk     
