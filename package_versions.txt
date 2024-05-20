@@ -69,7 +69,7 @@ libncursesw             6.4_p20230506-r0        apk
 libpciaccess            0.17-r2                 apk     
 libpcre2-16             10.42-r1                apk     
 libpng                  1.6.39-r3               apk     
-libpq                   15.6-r0                 apk     
+libpq                   15.7-r0                 apk     
 libproc2                4.0.4-r0                apk     
 libqca                  2.3.6-r0                apk     
 libsasl                 2.1.28-r4               apk     
@@ -94,7 +94,7 @@ libxi                   1.8.1-r0                apk
 libxinerama             1.1.5-r2                apk     
 libxkbcommon            1.5.0-r2                apk     
 libxkbcommon-x11        1.5.0-r2                apk     
-libxml2                 2.11.7-r0               apk     
+libxml2                 2.11.8-r0               apk     
 libxmu                  1.1.4-r2                apk     
 libxrandr               1.5.3-r2                apk     
 libxrender              0.9.11-r3               apk     
