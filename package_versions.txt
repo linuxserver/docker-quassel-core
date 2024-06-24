@@ -2,7 +2,7 @@ NAME                    VERSION                 TYPE
 alpine-baselayout       3.4.3-r1                apk     
 alpine-baselayout-data  3.4.3-r1                apk     
 alpine-keys             2.4-r1                  apk     
-alpine-release          3.18.6-r0               apk     
+alpine-release          3.18.7-r0               apk     
 apk-tools               2.14.4-r0               apk     
 at-spi2-core            2.48.4-r0               apk     
 avahi-libs              0.8-r13                 apk     
@@ -16,7 +16,7 @@ cairo                   1.17.8-r1               apk
 cairo-gobject           1.17.8-r1               apk     
 catatonit               0.1.7-r0                apk     
 coreutils               9.3-r2                  apk     
-cups-libs               2.4.7-r0                apk     
+cups-libs               2.4.9-r0                apk     
 curl                    8.5.0-r0                apk     
 dbus-libs               1.14.8-r0               apk     
 eudev-libs              3.2.11-r8               apk     
