@@ -136,7 +136,7 @@ services:
       - TZ=Etc/UTC
       - RUN_OPTS=--config-from-environment #optional
     volumes:
-      - /path/to/data:/config
+      - /path/to/quassel-core/data:/config
     ports:
       - 4242:4242
       - 113:10113 #optional
@@ -154,7 +154,7 @@ docker run -d \
   -e RUN_OPTS=--config-from-environment `#optional` \
   -p 4242:4242 \
   -p 113:10113 `#optional` \
-  -v /path/to/data:/config \
+  -v /path/to/quassel-core/data:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/quassel-core:latest
 ```
@@ -334,6 +334,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **26.08.23:** - Rebase to Alpine 3.20.
 * **10.11.23:** - Rebase to Alpine 3.18.
 * **03.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **13.02.23:** - Rebase to Alpine 3.17, migrate to s6v3.
