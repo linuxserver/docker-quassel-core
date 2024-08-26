@@ -78,7 +78,8 @@ RUN \
     qt5-qtbase-sqlite \
     qt5-qtscript \
     libqca-qt5 \
-    openldap
+    openldap && \
+  printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version
 
 # copy artifacts build stage
 COPY --from=build-stage /build/quassel/usr/ /usr/
