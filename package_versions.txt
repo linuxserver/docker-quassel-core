@@ -75,7 +75,7 @@ libncursesw             6.4_p20240420-r1        apk
 libpciaccess            0.18.1-r0               apk     
 libpcre2-16             10.43-r0                apk     
 libpng                  1.6.44-r0               apk     
-libpq                   16.3-r0                 apk     
+libpq                   16.4-r0                 apk     
 libproc2                4.0.4-r0                apk     
 libpsl                  0.21.5-r1               apk     
 libqca-qt5              2.3.8-r0                apk     
