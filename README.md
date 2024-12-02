@@ -118,10 +118,12 @@ docker create \
   linuxserver/quassel-core
 ```
 
- 
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
+
+>[!NOTE]
+>Unless a parameter is flaged as 'optional', it is *mandatory* and a value must be provided.
 
 ### docker-compose (recommended, [click here for more info](https://docs.linuxserver.io/general/docker-compose))
 
@@ -166,7 +168,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 
 | Parameter | Function |
 | :----: | --- |
-| `-p 4242` | The port quassel-core listens for connections on. |
+| `-p 4242:4242` | The port quassel-core listens for connections on. |
 | `-p 10113` | Optional Ident Port |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
