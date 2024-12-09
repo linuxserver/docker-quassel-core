@@ -3,7 +3,7 @@ alpine-baselayout       3.6.5-r0                apk
 alpine-baselayout-data  3.6.5-r0                apk     
 alpine-keys             2.4-r1                  apk     
 alpine-release          3.20.3-r0               apk     
-apk-tools               2.14.4-r0               apk     
+apk-tools               2.14.4-r1               apk     
 at-spi2-core            2.52.0-r0               apk     
 avahi-libs              0.8-r17                 apk     
 bash                    5.2.26-r0               apk     
@@ -21,7 +21,7 @@ coreutils-env           9.5-r1                  apk
 coreutils-fmt           9.5-r1                  apk     
 coreutils-sha512sum     9.5-r1                  apk     
 cups-libs               2.4.9-r1                apk     
-curl                    8.9.1-r2                apk     
+curl                    8.11.0-r2               apk     
 dbus-libs               1.14.10-r1              apk     
 eudev-libs              3.2.14-r2               apk     
 file                    5.45-r1                 apk     
@@ -51,7 +51,7 @@ libblkid                2.40.1-r1               apk
 libbsd                  0.12.2-r0               apk     
 libbz2                  1.0.8-r6                apk     
 libcrypto3              3.3.2-r1                apk     
-libcurl                 8.9.1-r2                apk     
+libcurl                 8.11.0-r2               apk     
 libdrm                  2.4.120-r0              apk     
 libeconf                0.6.3-r0                apk     
 libepoxy                1.5.10-r1               apk     
@@ -71,7 +71,7 @@ libltdl                 2.4.7-r3                apk
 libmagic                5.45-r1                 apk     
 libmd                   1.1.0-r0                apk     
 libmount                2.40.1-r1               apk     
-libncursesw             6.4_p20240420-r1        apk     
+libncursesw             6.4_p20240420-r2        apk     
 libpciaccess            0.18.1-r0               apk     
 libpcre2-16             10.43-r0                apk     
 libpng                  1.6.44-r0               apk     
@@ -119,7 +119,7 @@ mesa-glapi              24.0.9-r1               apk
 mtdev                   1.1.6-r3                apk     
 musl                    1.2.5-r0                apk     
 musl-utils              1.2.5-r0                apk     
-ncurses-terminfo-base   6.4_p20240420-r1        apk     
+ncurses-terminfo-base   6.4_p20240420-r2        apk     
 netcat-openbsd          1.226-r0                apk     
 nettle                  3.9.1-r0                apk     
 nghttp2-libs            1.62.1-r0               apk     
