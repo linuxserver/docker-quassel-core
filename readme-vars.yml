@@ -109,6 +109,7 @@ init_diagram: |
     init-quassel-config -> init-config-end
     init-os-end -> init-crontab-config
     init-mods-end -> init-custom-files
+    init-config-end -> init-deprecate
     base -> init-envfile
     base -> init-migrations
     base -> init-mods
@@ -122,6 +123,7 @@ init_diagram: |
     init-migrations -> init-os-end
     init-config -> init-quassel-config
     init-custom-files -> init-services
+    init-deprecate -> init-services
     init-mods-end -> init-services
     init-services -> svc-cron
     svc-cron -> legacy-services
