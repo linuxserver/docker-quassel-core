@@ -9,6 +9,7 @@ project_blurb: |
 
   This container handles the IRC connection (quasselcore) and requires a desktop client (quasselclient) to be used and configured. It is designed to be always on and will keep your identity present in IRC even when your clients cannot be online. Backlog (history) is downloaded by your client upon reconnection allowing infinite scrollback through time.
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+project_deprecation_status: true
 # supported architectures
 available_architectures:
   - {arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
@@ -133,6 +134,7 @@ init_diagram: |
   "quassel-core:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "26.12.24:", desc: "Deprecate."}
   - {date: "26.08.23:", desc: "Rebase to Alpine 3.20."}
   - {date: "10.11.23:", desc: "Rebase to Alpine 3.18."}
   - {date: "03.07.23:", desc: "Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)"}
